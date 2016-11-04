@@ -60,6 +60,12 @@ class ProjectsViewController: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let project = projectStore.allProjects[indexPath.row]
+        project.currentProject = !project.currentProject
+        tableView.reloadData()
+    }
+    
     // MARK: - TableView DataSource
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,6 +78,11 @@ class ProjectsViewController: UITableViewController {
         
         cell.textLabel?.text = project.name
         cell.detailTextLabel?.text = "This are some details about this project"
+        if project.currentProject == true {
+            cell.accessoryType = .Checkmark
+        } else {
+            cell.accessoryType = .None
+        }
         
         return cell
     }

@@ -16,8 +16,5 @@ class ProjectEditViewController: UIViewController {
         if let project = project {
             navigationItem.title = project.name
         }
-        else {
-            navigationItem.title = "WHY DOE"
-        }
     }
 }

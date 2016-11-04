@@ -14,7 +14,6 @@ class ProjectStore {
     
     func createProject() -> Project {
         let newProject = Project(random: true)
-        newProject.name = String(allProjects.count)
         
         allProjects.append(newProject)
         
