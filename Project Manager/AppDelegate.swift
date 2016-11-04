@@ -16,6 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let projectStore = ProjectStore()
+        
+        let tabBarController = window!.rootViewController as! UITabBarController
+        let navController = tabBarController.viewControllers![0] as! UINavigationController
+        let projectsViewController = navController.topViewController as! ProjectsViewController
+        
+        projectsViewController.projectStore = projectStore
+        
         return true
     }
 

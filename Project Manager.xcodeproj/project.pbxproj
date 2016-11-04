@@ -8,20 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		3FCCD73A1DCB990300978C4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCD7391DCB990300978C4A /* AppDelegate.swift */; };
-		3FCCD73C1DCB990300978C4A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCD73B1DCB990300978C4A /* ViewController.swift */; };
+		3FCCD73C1DCB990300978C4A /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCD73B1DCB990300978C4A /* ProjectsViewController.swift */; };
 		3FCCD73F1DCB990300978C4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FCCD73D1DCB990300978C4A /* Main.storyboard */; };
 		3FCCD7411DCB990300978C4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FCCD7401DCB990300978C4A /* Assets.xcassets */; };
 		3FCCD7441DCB990300978C4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FCCD7421DCB990300978C4A /* LaunchScreen.storyboard */; };
+		3FCCD74C1DCB9D2D00978C4A /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCD74B1DCB9D2D00978C4A /* Project.swift */; };
+		3FCCD74E1DCBA0E100978C4A /* Phase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCD74D1DCBA0E100978C4A /* Phase.swift */; };
+		3FCCD7501DCBA17100978C4A /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCD74F1DCBA17100978C4A /* Task.swift */; };
+		3FCCD7521DCBA8A800978C4A /* ProjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCD7511DCBA8A800978C4A /* ProjectStore.swift */; };
+		3FCCD7541DCBCB9500978C4A /* ProjectEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCD7531DCBCB9500978C4A /* ProjectEditViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3FCCD7361DCB990200978C4A /* Project Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FCCD7391DCB990300978C4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3FCCD73B1DCB990300978C4A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3FCCD73B1DCB990300978C4A /* ProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
 		3FCCD73E1DCB990300978C4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3FCCD7401DCB990300978C4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3FCCD7431DCB990300978C4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3FCCD7451DCB990300978C4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FCCD74B1DCB9D2D00978C4A /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		3FCCD74D1DCBA0E100978C4A /* Phase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Phase.swift; sourceTree = "<group>"; };
+		3FCCD74F1DCBA17100978C4A /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		3FCCD7511DCBA8A800978C4A /* ProjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectStore.swift; sourceTree = "<group>"; };
+		3FCCD7531DCBCB9500978C4A /* ProjectEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectEditViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +65,16 @@
 			isa = PBXGroup;
 			children = (
 				3FCCD7391DCB990300978C4A /* AppDelegate.swift */,
-				3FCCD73B1DCB990300978C4A /* ViewController.swift */,
+				3FCCD73B1DCB990300978C4A /* ProjectsViewController.swift */,
 				3FCCD73D1DCB990300978C4A /* Main.storyboard */,
 				3FCCD7401DCB990300978C4A /* Assets.xcassets */,
 				3FCCD7421DCB990300978C4A /* LaunchScreen.storyboard */,
 				3FCCD7451DCB990300978C4A /* Info.plist */,
+				3FCCD74B1DCB9D2D00978C4A /* Project.swift */,
+				3FCCD74D1DCBA0E100978C4A /* Phase.swift */,
+				3FCCD74F1DCBA17100978C4A /* Task.swift */,
+				3FCCD7511DCBA8A800978C4A /* ProjectStore.swift */,
+				3FCCD7531DCBCB9500978C4A /* ProjectEditViewController.swift */,
 			);
 			path = "Project Manager";
 			sourceTree = "<group>";
@@ -135,8 +150,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FCCD73C1DCB990300978C4A /* ViewController.swift in Sources */,
+				3FCCD73C1DCB990300978C4A /* ProjectsViewController.swift in Sources */,
+				3FCCD7521DCBA8A800978C4A /* ProjectStore.swift in Sources */,
 				3FCCD73A1DCB990300978C4A /* AppDelegate.swift in Sources */,
+				3FCCD7541DCBCB9500978C4A /* ProjectEditViewController.swift in Sources */,
+				3FCCD7501DCBA17100978C4A /* Task.swift in Sources */,
+				3FCCD74C1DCB9D2D00978C4A /* Project.swift in Sources */,
+				3FCCD74E1DCBA0E100978C4A /* Phase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +308,7 @@
 				3FCCD74A1DCB990300978C4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
