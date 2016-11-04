@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FC9206D1DCD165500F412A2 /* ProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9206C1DCD165500F412A2 /* ProjectViewController.swift */; };
 		3FCCD73A1DCB990300978C4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCD7391DCB990300978C4A /* AppDelegate.swift */; };
 		3FCCD73C1DCB990300978C4A /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCD73B1DCB990300978C4A /* ProjectsViewController.swift */; };
 		3FCCD73F1DCB990300978C4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FCCD73D1DCB990300978C4A /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3FC9206C1DCD165500F412A2 /* ProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectViewController.swift; sourceTree = "<group>"; };
 		3FCCD7361DCB990200978C4A /* Project Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FCCD7391DCB990300978C4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FCCD73B1DCB990300978C4A /* ProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				3FCCD74F1DCBA17100978C4A /* Task.swift */,
 				3FCCD7511DCBA8A800978C4A /* ProjectStore.swift */,
 				3FCCD7531DCBCB9500978C4A /* ProjectEditViewController.swift */,
+				3FC9206C1DCD165500F412A2 /* ProjectViewController.swift */,
 			);
 			path = "Project Manager";
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 				3FCCD7521DCBA8A800978C4A /* ProjectStore.swift in Sources */,
 				3FCCD73A1DCB990300978C4A /* AppDelegate.swift in Sources */,
 				3FCCD7541DCBCB9500978C4A /* ProjectEditViewController.swift in Sources */,
+				3FC9206D1DCD165500F412A2 /* ProjectViewController.swift in Sources */,
 				3FCCD7501DCBA17100978C4A /* Task.swift in Sources */,
 				3FCCD74C1DCB9D2D00978C4A /* Project.swift in Sources */,
 				3FCCD74E1DCBA0E100978C4A /* Phase.swift in Sources */,

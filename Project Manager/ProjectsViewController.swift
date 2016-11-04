@@ -61,8 +61,7 @@ class ProjectsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let project = projectStore.allProjects[indexPath.row]
-        project.currentProject = !project.currentProject
+        projectStore.setProjectAtIndexToCurrent(indexPath.row)
         tableView.reloadData()
     }
     
