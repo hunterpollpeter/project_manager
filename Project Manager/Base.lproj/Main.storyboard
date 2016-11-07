@@ -1,29 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qlk-A2-5JY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qlk-A2-5JY">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Project View Controller-->
-        <scene sceneID="Ugp-eI-WPE">
-            <objects>
-                <viewController id="ggY-CZ-5Vg" customClass="ProjectViewController" customModule="Project_Manager" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="D2w-Uz-ryx"/>
-                        <viewControllerLayoutGuide type="bottom" id="xoV-Wa-ZH1"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="CqC-zR-o47">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="yO0-bt-43e"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EwO-ob-LWs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4135" y="830"/>
-        </scene>
         <!--Projects-->
         <scene sceneID="SNt-9I-Gd9">
             <objects>
@@ -87,13 +68,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ehl-wG-CAN">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UITableViewCell" id="Ehl-wG-CAN">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ehl-wG-CAN" id="NfA-PA-LFA">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="4aW-wb-Pxq" kind="showDetail" identifier="PhaseTasks" id="P8w-HM-Yq6"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -136,23 +120,6 @@
             </objects>
             <point key="canvasLocation" x="1155" y="354"/>
         </scene>
-        <!--Project Edit View Controller-->
-        <scene sceneID="3we-nL-HNp">
-            <objects>
-                <viewController id="yod-d7-JPc" customClass="ProjectEditViewController" customModule="Project_Manager" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="sI1-Op-FSg"/>
-                        <viewControllerLayoutGuide type="bottom" id="axD-K3-GBP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="CjQ-RI-yN3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XKX-m4-dPG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4736" y="-101"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="EaP-at-po1">
             <objects>
@@ -164,12 +131,60 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="ggY-CZ-5Vg" kind="relationship" relationship="rootViewController" id="pei-yH-QAA"/>
+                        <segue destination="Zjo-Wg-DyI" kind="relationship" relationship="rootViewController" id="5y1-gb-A7b"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yuS-Ez-nXN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3414" y="830"/>
         </scene>
+        <!--Tasks View Controller-->
+        <scene sceneID="AYg-Y7-ZEj">
+            <objects>
+                <tableViewController id="Zjo-Wg-DyI" customClass="TasksViewController" customModule="Project_Manager" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="efd-M1-abB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UITableViewCell" textLabel="jHe-NL-iSd" detailTextLabel="ErB-Cc-KJ6" style="IBUITableViewCellStyleSubtitle" id="5K8-OJ-vmn">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5K8-OJ-vmn" id="3Yh-kb-dCW">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jHe-NL-iSd">
+                                            <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ErB-Cc-KJ6">
+                                            <rect key="frame" x="15" y="25" width="41" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Zjo-Wg-DyI" id="8EN-TR-ADK"/>
+                            <outlet property="delegate" destination="Zjo-Wg-DyI" id="flG-ef-OUk"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Kqg-q0-6hg"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UPA-wA-hfY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4132" y="830"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="P8w-HM-Yq6"/>
+    </inferredMetricsTieBreakers>
 </document>

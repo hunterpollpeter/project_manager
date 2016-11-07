@@ -25,7 +25,8 @@ class ProjectsViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ProjectPhases" {
             let phasesViewController = segue.destinationViewController as! PhasesViewController
-            phasesViewController.cell = sender as! UITableViewCell
+            let cell = sender as! UITableViewCell
+            phasesViewController.project = projectStore.allProjects[tableView.indexPathForCell(cell)!.row]
         }
     }
     
