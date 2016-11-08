@@ -14,6 +14,7 @@ class ProjectViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet var tableView: UITableView!
     @IBOutlet var detailsLabel: UILabel!
     @IBOutlet var deadlineLabel: UILabel!
+    @IBOutlet weak var phasesView: UIView!
     
     override func viewDidLoad() {
         if let project = project {
@@ -22,6 +23,8 @@ class ProjectViewController: UIViewController, UITableViewDelegate, UITableViewD
             let dateFormatter = NSDateFormatter()
             deadlineLabel.text = dateFormatter.stringFromDate(project.deadLine)
         }
+        phasesView.layer.borderWidth = 1
+        phasesView.layer.borderColor = UIColor.lightGrayColor().CGColor
         tableView.dataSource = self
         tableView.delegate = self
     }
@@ -29,7 +32,6 @@ class ProjectViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - TableView Delegate
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("hello")
         if segue.identifier == "PhaseTasks" {
             let tasksViewController = segue.destinationViewController as! TasksViewController
             let cell = sender as! UITableViewCell
