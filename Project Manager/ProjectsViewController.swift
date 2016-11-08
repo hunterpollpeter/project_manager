@@ -24,7 +24,8 @@ class ProjectsViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ProjectPhases" {
-            let phasesViewController = segue.destinationViewController as! PhasesViewController
+            let navController = segue.destinationViewController as! UINavigationController
+            let phasesViewController =  navController.topViewController as! ProjectViewController
             let cell = sender as! UITableViewCell
             phasesViewController.project = projectStore.allProjects[tableView.indexPathForCell(cell)!.row]
         }
@@ -41,7 +42,7 @@ class ProjectsViewController: UITableViewController {
         let project = projectStore.allProjects[indexPath.row]
         
         cell.textLabel?.text = project.name
-        cell.detailTextLabel?.text = "These are some details about this project"
+        cell.detailTextLabel?.text = project.details
         
         return cell
     }

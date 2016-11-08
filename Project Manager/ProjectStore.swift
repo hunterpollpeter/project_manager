@@ -11,18 +11,10 @@ import Foundation
 class ProjectStore {
     
     var allProjects = [Project]()
-    var currentProject: Project? {
-        for project in allProjects {
-            if project.currentProject == true {
-                return project
-            }
-        }
-        return nil
-    }
     
     func createProject() -> Project {
         let newProject = Project(random: true)
-        newProject.currentProject = allProjects.isEmpty
+        newProject.details = "These are some details about this project"
         
         allProjects.append(newProject)
         
@@ -45,12 +37,6 @@ class ProjectStore {
         allProjects.insert(movedProject, atIndex: toIndex)
     }
     
-    func setProjectAtIndexToCurrent(index: Int) {
-        for project in allProjects {
-            project.currentProject = false
-        }
-        allProjects[index].currentProject = true
-    }
     
     init() {
         for _ in 0..<5 {

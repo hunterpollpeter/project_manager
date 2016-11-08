@@ -16,7 +16,6 @@ class Project: NSObject {
     var deadLine: NSDate!
     var started: Bool!
     var phases: [Phase]!
-    var currentProject: Bool!
     
     var complete: Bool {
         for phase in phases {
@@ -33,7 +32,6 @@ class Project: NSObject {
         self.deadLine = deadLine
         self.started = false
         self.phases = []
-        self.currentProject = false
         
         super.init()
     }
