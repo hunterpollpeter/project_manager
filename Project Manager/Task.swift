@@ -35,6 +35,7 @@ class Task: NSObject {
             let randomName = names[Int(idx)]
             
             self.init(name: randomName, start: NSDate(), deadLine: NSDate())
+            self.complete = arc4random_uniform(2) == 1
         }
         else {
             self.init(name: "No Name", start: NSDate(), deadLine: NSDate())

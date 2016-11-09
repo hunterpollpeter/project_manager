@@ -12,14 +12,12 @@ class ProjectViewController: UIViewController, UITableViewDelegate, UITableViewD
     var project: Project!
     
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var detailsLabel: UILabel!
     @IBOutlet var deadlineLabel: UILabel!
     @IBOutlet weak var phasesView: UIView!
     
     override func viewDidLoad() {
         if let project = project {
             navigationItem.title = project.name
-            detailsLabel.text = project.details
             let dateFormatter = NSDateFormatter()
             deadlineLabel.text = dateFormatter.stringFromDate(project.deadLine)
         }
