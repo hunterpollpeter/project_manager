@@ -14,7 +14,6 @@ class ProjectStore {
     
     func createProject() -> Project {
         let newProject = Project(random: true)
-        newProject.details = "These are some details about this project"
         
         allProjects.append(newProject)
         

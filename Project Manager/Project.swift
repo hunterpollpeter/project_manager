@@ -9,32 +9,19 @@
 import UIKit
 
 class Project: NSObject {
-    var name: String!
-    var details: String?
-    var notes: String?
-    var start: NSDate!
-    var deadLine: NSDate!
-    var started: Bool!
     var phases: [Phase]!
+    var properties: [String: AnyObject]!
     
-    var complete: Bool {
-        for phase in phases {
-            if !phase.complete {
-                return false
-            }
-        }
-        return true
-    }
-    
-    init(name: String, start: NSDate, deadLine: NSDate) {
-        self.name = name
-        self.start = start
-        self.deadLine = deadLine
-        self.started = false
+    init(name: String, details: String = "", start: NSDate, deadline: NSDate) {
+        self.properties = ["Name": name,
+                           "Details": details,
+                           "Start": start,
+                           "Deadline": deadline,
+                           "Complete": false]
         self.phases = []
-        
         super.init()
     }
+
     
     convenience init(random: Bool = false) {
         if random {
@@ -43,15 +30,16 @@ class Project: NSObject {
             let idx = arc4random_uniform(UInt32(names.count))
             let randomName = names[Int(idx)]
             
-            self.init(name: randomName, start: NSDate(), deadLine: NSDate())
+            self.init(name: randomName, start: NSDate(), deadline: NSDate())
             
             let randomValue = arc4random_uniform(10)
             for _ in 0...randomValue {
                 self.phases.append(Phase(random: true))
             }
+            self.properties["Details"] = "These are some details about this project"
         }
         else {
-            self.init(name: "No Name", start: NSDate(), deadLine: NSDate())
+            self.init(name: "No Name", start: NSDate(), deadline: NSDate())
         }
     }
 }

@@ -9,21 +9,14 @@
 import Foundation
 
 class Task: NSObject {
-    var name: String!
-    var details: String?
-    var notes: String?
-    var start: NSDate!
-    var deadLine: NSDate!
-    var started: Bool!
-    var complete: Bool!
+    var properties: [String: AnyObject]!
     
-    init(name: String, start: NSDate, deadLine: NSDate) {
-        self.name = name
-        self.start = start
-        self.deadLine = deadLine
-        self.started = false
-        self.complete = false
-        
+    init(name: String, details: String = "", start: NSDate, deadline: NSDate) {
+        self.properties = ["Name": name,
+                           "Details": details,
+                           "Start": start,
+                           "Deadline": deadline,
+                           "Complete": false]
         super.init()
     }
     
@@ -34,11 +27,12 @@ class Task: NSObject {
             let idx = arc4random_uniform(UInt32(names.count))
             let randomName = names[Int(idx)]
             
-            self.init(name: randomName, start: NSDate(), deadLine: NSDate())
-            self.complete = arc4random_uniform(2) == 1
+            self.init(name: randomName, start: NSDate(), deadline: NSDate())
+            self.properties["Complete"] = arc4random_uniform(2) == 1
+            self.properties["Details"] = "These are some details about this task"
         }
         else {
-            self.init(name: "No Name", start: NSDate(), deadLine: NSDate())
+            self.init(name: "No Name", start: NSDate(), deadline: NSDate())
         }
     }
 }

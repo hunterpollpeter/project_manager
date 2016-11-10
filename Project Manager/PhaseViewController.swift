@@ -1,5 +1,5 @@
 //
-//  PhasesViewController.swift
+//  TasksViewController.swift
 //  Project Manager
 //
 //  Created by Student on 11/7/16.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ProjectViewController: UITableViewController {
-    var project: Project!
-    let sections = ["General Information", "Phases"]
+class PhaseViewController: UITableViewController {
+    var phase: Phase!
+    let sections = ["General Information", "Tasks"]
     
     override func viewDidLoad() {
-        if let project = project {
-            let name = project.properties["Name"] as! String
+        if let phase = phase {
+            let name = phase.properties["Name"] as! String
             navigationItem.title = name
         }
     }
@@ -23,15 +23,14 @@ class ProjectViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {
-        case "PhaseTasks":
-            let tasksViewController = segue.destinationViewController as! PhaseViewController
+        case "TaskDetail":
+            let taskViewController = segue.destinationViewController as! TaskViewController
             let cell = sender as! UITableViewCell
-            tasksViewController.phase = project.phases[tableView.indexPathForCell(cell)!.row]
+            taskViewController.task = phase.tasks[tableView.indexPathForCell(cell)!.row]
         default:
             return
         }
     }
-
     
     // MARK: - TableView DataSource
     
@@ -46,12 +45,12 @@ class ProjectViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            if let project = project {
-                return project.properties.count
+            if let phase = phase {
+                return phase.properties.count
             }
         case 1:
-            if let project = project {
-                return project.phases.count
+            if let phase = phase {
+                return phase.tasks.count
             }
         default:
             return 0
@@ -64,8 +63,8 @@ class ProjectViewController: UITableViewController {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("GeneralInformationCell", forIndexPath: indexPath)
-            let key = Array(project.properties.keys)[indexPath.row]
-            let value = project.properties[key]
+            let key = Array(phase.properties.keys)[indexPath.row]
+            let value = phase.properties[key]
             let dateFormatter: NSDateFormatter = {
                 let df = NSDateFormatter()
                 df.dateStyle = NSDateFormatterStyle.MediumStyle
@@ -90,12 +89,11 @@ class ProjectViewController: UITableViewController {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("PercentCell", forIndexPath: indexPath)
-            let phase = project.phases[indexPath.row] 
-            let name = phase.properties["Name"] as! String
-            let details = phase.properties["Details"] as! String
+            let task = phase.tasks[indexPath.row]
+            let name = task.properties["Name"] as! String
+            let details = task.properties["Details"] as! String
             cell.textLabel?.text = name
             cell.detailTextLabel?.text = details
-
             return cell
         default:
             return UITableViewCell()

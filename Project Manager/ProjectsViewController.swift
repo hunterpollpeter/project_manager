@@ -23,11 +23,14 @@ class ProjectsViewController: UITableViewController {
     // MARK: - TableView Delegate
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ProjectPhases" {
+        switch segue.identifier! {
+        case "ProjectPhases":
             let navController = segue.destinationViewController as! UINavigationController
             let phasesViewController =  navController.topViewController as! ProjectViewController
             let cell = sender as! UITableViewCell
             phasesViewController.project = projectStore.allProjects[tableView.indexPathForCell(cell)!.row]
+        default:
+            return
         }
     }
     
@@ -40,9 +43,10 @@ class ProjectsViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell", forIndexPath: indexPath)
         let project = projectStore.allProjects[indexPath.row]
-        
-        cell.textLabel?.text = project.name
-        cell.detailTextLabel?.text = project.details
+        let name = project.properties["Name"] as! String
+        let details = project.properties["Details"] as! String
+        cell.textLabel?.text = name
+        cell.detailTextLabel?.text = details
         
         return cell
     }
