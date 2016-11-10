@@ -45,8 +45,23 @@ class TasksViewController: UITableViewController {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("GeneralInformationCell", forIndexPath: indexPath)
             let information = phase.generalInformation[indexPath.row]
-            cell.textLabel?.text = information.0
-            cell.detailTextLabel?.text = information.1
+            let name = information.0
+            var value: Any? = information.1
+            var detailText = ""
+            cell.textLabel?.text = name
+            switch value {
+            case is String:
+                let sValue = value as! String
+                detailText = sValue
+            case is Bool:
+                let boolValue = value as! Bool
+                if boolValue == true {
+                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                }
+            default:
+                value = nil
+            }
+            cell.detailTextLabel?.text = detailText
             return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("PercentCell", forIndexPath: indexPath)
@@ -66,7 +81,6 @@ class TasksViewController: UITableViewController {
         default:
             return UITableViewCell()
         }
-        
     }
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
@@ -78,5 +92,14 @@ class TasksViewController: UITableViewController {
             return nil
         }
     }
-
+}
+extension String {
+    
+    func stringFromCamelCase() -> String {
+        var string = self
+        string = string.stringByReplacingOccurrencesOfString("([a-z])([A-Z])", withString: "$1 $2", options: NSStringCompareOptions.RegularExpressionSearch, range: Range<String.Index>(string.startIndex ..< string.endIndex))
+        string.replaceRange(startIndex...startIndex, with: String(self[startIndex]).capitalizedString)
+        return string
+    }
+    
 }
