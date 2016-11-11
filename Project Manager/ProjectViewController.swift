@@ -39,38 +39,6 @@ class ProjectViewController: UITableViewController {
         return sections.count
     }
     
-//    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        switch section {
-//        case 0:
-//            return 56
-//        default:
-//            return tableView.dequeueReusableCellWithIdentifier("HeaderCell")!.frame.height
-//
-//        }
-//    }
-    
-//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let header = tableView.dequeueReusableCellWithIdentifier("HeaderCell")
-//        let label = header!.contentView.subviews[0] as! UILabel
-//        label.text = sections[section].uppercaseString
-//        let button = header!.contentView.subviews[1] as! UIButton
-//        button.titleLabel?.text = "Hello"
-//        switch section {
-//        case 0:
-//            button.titleLabel!.text = "Edit"
-//        case 1:
-//            button.titleLabel!.text = "+"
-//        default:
-//            return nil
-//        }
-//        return header?.contentView
-//    }
-    
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        var button = UIButton()
-        view.addSubview(button)
-    }
-    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section]
     }
