@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Projects-->
@@ -268,38 +267,6 @@
                                 <connections>
                                     <segue destination="Zjo-Wg-DyI" kind="show" identifier="PhaseTasks" id="RIY-yF-Iy5"/>
                                 </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" id="NkB-oy-Flf">
-                                <rect key="frame" x="0.0" y="202" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NkB-oy-Flf" id="nSi-F7-D1h">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <userGuides>
-                                        <userLayoutGuide location="21" affinity="minY"/>
-                                        <userLayoutGuide location="21" affinity="minY"/>
-                                        <userLayoutGuide location="21" affinity="minY"/>
-                                    </userGuides>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABEL" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MxS-QW-DSk">
-                                            <rect key="frame" x="16" y="22" width="37" height="15"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tzh-jJ-Tn1">
-                                            <rect key="frame" x="543" y="15" width="41" height="28"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <state key="normal" title="Button"/>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="MxS-QW-DSk" secondAttribute="bottom" constant="-2" id="3Tn-34-dM9"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Tzh-jJ-Tn1" secondAttribute="trailing" constant="8" id="a7a-rY-Sj4"/>
-                                        <constraint firstItem="MxS-QW-DSk" firstAttribute="leading" secondItem="nSi-F7-D1h" secondAttribute="leadingMargin" constant="8" id="h1K-vW-eYM"/>
-                                        <constraint firstItem="Tzh-jJ-Tn1" firstAttribute="baseline" secondItem="MxS-QW-DSk" secondAttribute="baseline" id="wqM-o5-lGJ"/>
-                                    </constraints>
-                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
