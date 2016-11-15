@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qlk-A2-5JY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qlk-A2-5JY">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -38,7 +38,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="4aW-wb-Pxq" kind="showDetail" identifier="ProjectPhases" id="3vb-eE-LeC"/>
+                                    <segue destination="4aW-wb-Pxq" kind="showDetail" identifier="ProjectDetail" id="3vb-eE-LeC"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -177,17 +177,19 @@
                             <outlet property="delegate" destination="Zjo-Wg-DyI" id="flG-ef-OUk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Kqg-q0-6hg"/>
-                    <connections>
-                        <segue destination="ejK-kN-cRa" kind="show" identifier="EditPhase" id="q3P-x2-gp7"/>
-                        <segue destination="bhg-ug-dT7" kind="show" identifier="CreateTask" id="YNS-2R-OcE"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="Kqg-q0-6hg">
+                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="edit" id="C1N-tC-vOs">
+                            <connections>
+                                <segue destination="clt-oA-q1g" kind="show" identifier="EditPhase" id="Bqy-qz-R8g"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UPA-wA-hfY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4129" y="861"/>
         </scene>
-        <!--Task View Controller-->
+        <!--Title-->
         <scene sceneID="Cew-Xg-I00">
             <objects>
                 <viewController id="a7m-Aw-xCo" customClass="TaskViewController" customModule="Project_Manager" customModuleProvider="target" sceneMemberID="viewController">
@@ -200,9 +202,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <segue destination="bhg-ug-dT7" kind="show" identifier="EditTask" id="WIo-T5-nQb"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Title" id="yHb-vu-kMH">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="MHL-86-6ol">
+                            <connections>
+                                <segue destination="8Cb-t6-Rlh" kind="show" identifier="EditTask" id="dV3-kr-XNf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0eG-b6-Nws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -241,7 +247,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PercentCell" textLabel="WlW-Hu-5zC" detailTextLabel="5I3-Xc-YbK" style="IBUITableViewCellStyleSubtitle" id="P8e-Li-FtK">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailCell" textLabel="WlW-Hu-5zC" detailTextLabel="5I3-Xc-YbK" style="IBUITableViewCellStyleSubtitle" id="P8e-Li-FtK">
                                 <rect key="frame" x="0.0" y="158" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P8e-Li-FtK" id="PXh-bW-dnE">
@@ -265,7 +271,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Zjo-Wg-DyI" kind="show" identifier="PhaseTasks" id="RIY-yF-Iy5"/>
+                                    <segue destination="Zjo-Wg-DyI" kind="show" identifier="PhaseDetail" id="RIY-yF-Iy5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -274,11 +280,13 @@
                             <outlet property="delegate" destination="TnO-6N-7FK" id="p79-iw-s7S"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="COC-Vk-d94"/>
-                    <connections>
-                        <segue destination="nfx-4W-LaJ" kind="show" identifier="EditProject" id="l2b-lq-clB"/>
-                        <segue destination="ejK-kN-cRa" kind="show" identifier="CreatePhase" id="38B-Nv-dbC"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="COC-Vk-d94">
+                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="edit" id="RbZ-FE-b2D">
+                            <connections>
+                                <segue destination="nfx-4W-LaJ" kind="show" identifier="EditProject" id="exx-AL-dPj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MAv-2u-6Zb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -297,52 +305,69 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="tqP-Sh-0e4">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="4ba-fZ-kbe"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="clt-oA-q1g" kind="show" id="Uzy-ax-wkm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2FC-al-kbl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3417" y="49"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="CJF-ql-Tgo">
+        <!--Title-->
+        <scene sceneID="Xv0-Vw-Kwu">
             <objects>
-                <viewController id="ejK-kN-cRa" sceneMemberID="viewController">
+                <viewController id="clt-oA-q1g" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Xuy-85-6Vl"/>
-                        <viewControllerLayoutGuide type="bottom" id="JLM-Oo-h2O"/>
+                        <viewControllerLayoutGuide type="top" id="mdk-PV-Zzd"/>
+                        <viewControllerLayoutGuide type="bottom" id="g0g-w4-J5P"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hDv-Om-4kf">
+                    <view key="view" contentMode="scaleToFill" id="2H9-Rn-agY">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="IRd-6H-Wmy">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="tW5-AC-w5c"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="8Cb-t6-Rlh" kind="show" identifier="CreateTask" id="O9o-ec-sN4"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5Z4-yJ-Ahl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hm3-tt-FfX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4129" y="49"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="gyK-dG-L4K">
+        <!--Title-->
+        <scene sceneID="fwT-s4-hWA">
             <objects>
-                <viewController id="bhg-ug-dT7" sceneMemberID="viewController">
+                <viewController id="8Cb-t6-Rlh" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gTZ-jh-uhm"/>
-                        <viewControllerLayoutGuide type="bottom" id="qHr-6M-Gft"/>
+                        <viewControllerLayoutGuide type="top" id="nG0-gc-idu"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xhv-Ug-ckk"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3Nk-zJ-Rxn">
+                    <view key="view" contentMode="scaleToFill" id="xXi-IG-Sze">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="iNr-pg-eQn">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="q88-nI-zaa"/>
+                    </navigationItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NDI-ix-0t4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DYL-jP-eCF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4842" y="49"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="zfE-2s-bID"/>
-        <segue reference="l2b-lq-clB"/>
-        <segue reference="38B-Nv-dbC"/>
-        <segue reference="YNS-2R-OcE"/>
+        <segue reference="3vb-eE-LeC"/>
+        <segue reference="Kkp-eU-5Wh"/>
+        <segue reference="Uzy-ax-wkm"/>
+        <segue reference="O9o-ec-sN4"/>
     </inferredMetricsTieBreakers>
 </document>

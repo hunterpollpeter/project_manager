@@ -24,7 +24,7 @@ class ProjectsViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {
-        case "ProjectPhases":
+        case "ProjectDetail":
             let navController = segue.destinationViewController as! UINavigationController
             let phasesViewController =  navController.topViewController as! ProjectViewController
             let cell = sender as! UITableViewCell

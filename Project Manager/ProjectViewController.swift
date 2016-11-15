@@ -12,18 +12,27 @@ class ProjectViewController: UITableViewController {
     var project: Project!
     let sections = ["General Information", "Phases"]
     
+    func editProject() {
+        performSegueWithIdentifier("EditProject", sender: nil)
+    }
+    
+    func createPhase() {
+        performSegueWithIdentifier("CreatePhase", sender: nil)
+    }
+    
     override func viewDidLoad() {
         if let project = project {
             let name = project.properties["Name"] as! String
             navigationItem.title = name
         }
     }
+
     
     // MARK: - TableView Delegate
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {
-        case "PhaseTasks":
+        case "PhaseDetail":
             let tasksViewController = segue.destinationViewController as! PhaseViewController
             let cell = sender as! UITableViewCell
             tasksViewController.phase = project.phases[tableView.indexPathForCell(cell)!.row]
@@ -37,27 +46,6 @@ class ProjectViewController: UITableViewController {
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return sections.count
-    }
-    
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header = view as! UITableViewHeaderFooterView
-        let contentView = header.contentView
-        let button = UIButton(type: .Custom)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(button)
-        let bottomConstraint = button.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor)
-        bottomConstraint.constant = 0
-        let trailingConstraint = button.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor)
-        trailingConstraint.constant = -15
-        bottomConstraint.active = true
-        trailingConstraint.active = true
-        switch section {
-        case 0:
-            button.setTitle("Edit", forState: .Normal)
-            button.setTitleColor(UIColor.init(red: 0, green: 122, blue: 255, alpha: 1.0), forState: .Normal)
-        default:
-            return
-        }
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -81,7 +69,6 @@ class ProjectViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("GeneralInformationCell", forIndexPath: indexPath)
@@ -110,7 +97,7 @@ class ProjectViewController: UITableViewController {
             cell.detailTextLabel?.text = detailText
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier("PercentCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier("DetailCell", forIndexPath: indexPath)
             let phase = project.phases[indexPath.row] 
             let name = phase.properties["Name"] as! String
             let details = phase.properties["Details"] as! String
