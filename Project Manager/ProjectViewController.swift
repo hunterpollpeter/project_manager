@@ -12,14 +12,6 @@ class ProjectViewController: UITableViewController {
     var project: Project!
     let sections = ["General Information", "Phases"]
     
-    func editProject() {
-        performSegueWithIdentifier("EditProject", sender: nil)
-    }
-    
-    func createPhase() {
-        performSegueWithIdentifier("CreatePhase", sender: nil)
-    }
-    
     override func viewDidLoad() {
         if let project = project {
             let name = project.properties["Name"] as! String
@@ -27,8 +19,9 @@ class ProjectViewController: UITableViewController {
         }
     }
 
-    
-    // MARK: - TableView Delegate
+    func prepareForUnwind() {
+        
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {

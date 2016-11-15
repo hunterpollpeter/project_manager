@@ -50,13 +50,10 @@
                     <navigationItem key="navigationItem" title="Projects" id="xMh-oC-Nw7">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="tIe-uI-n4n">
                             <connections>
-                                <action selector="addNewProject:" destination="uER-DC-8MO" id="kLn-KN-bup"/>
+                                <action selector="addNewProject:" destination="uER-DC-8MO" id="93y-SH-zZT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="4aW-wb-Pxq" kind="show" identifier="CreateProject" id="FaU-yf-ke3"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gnh-fZ-UtP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -85,7 +82,7 @@
                 <splitViewController id="qlk-A2-5JY" customClass="SplitViewController" customModule="Project_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="Se8-Wu-SLR" kind="relationship" relationship="masterViewController" id="Ysx-aI-iJF"/>
-                        <segue destination="4aW-wb-Pxq" kind="relationship" relationship="detailViewController" id="zfE-2s-bID"/>
+                        <segue destination="4aW-wb-Pxq" kind="relationship" relationship="detailViewController" id="VLw-JU-QaJ"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tMb-kk-Tpz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -104,7 +101,6 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="TnO-6N-7FK" kind="relationship" relationship="rootViewController" id="btG-7A-xUh"/>
-                        <segue destination="nfx-4W-LaJ" kind="show" identifier="CreateProject" id="Kkp-eU-5Wh"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yuS-Ez-nXN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -237,7 +233,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xUi-Of-3LM">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xUi-Of-3LM">
                                             <rect key="frame" x="529" y="12" width="56" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -283,7 +279,7 @@
                     <navigationItem key="navigationItem" id="COC-Vk-d94">
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="edit" id="RbZ-FE-b2D">
                             <connections>
-                                <segue destination="nfx-4W-LaJ" kind="show" identifier="EditProject" id="exx-AL-dPj"/>
+                                <segue destination="nfx-4W-LaJ" kind="show" identifier="EditProject" id="T25-o4-bYJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -292,10 +288,10 @@
             </objects>
             <point key="canvasLocation" x="3417" y="861"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Project View Controller-->
         <scene sceneID="DZc-TR-82o">
             <objects>
-                <viewController id="nfx-4W-LaJ" sceneMemberID="viewController">
+                <viewController id="nfx-4W-LaJ" customClass="CreateProjectViewController" customModule="Project_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="obo-uI-tkz"/>
                         <viewControllerLayoutGuide type="bottom" id="Vlu-m1-jIH"/>
@@ -307,18 +303,22 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="tqP-Sh-0e4">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="4ba-fZ-kbe"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="4ba-fZ-kbe">
+                            <connections>
+                                <action selector="done:" destination="nfx-4W-LaJ" id="eco-WD-Z3t"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="clt-oA-q1g" kind="show" id="Uzy-ax-wkm"/>
+                        <segue destination="clt-oA-q1g" kind="show" identifier="CreatePhase" id="Uzy-ax-wkm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2FC-al-kbl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3417" y="49"/>
+            <point key="canvasLocation" x="3440" y="49"/>
         </scene>
-        <!--Title-->
+        <!-- -->
         <scene sceneID="Xv0-Vw-Kwu">
             <objects>
                 <viewController id="clt-oA-q1g" sceneMemberID="viewController">
@@ -331,7 +331,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="IRd-6H-Wmy">
+                    <navigationItem key="navigationItem" title=" " id="IRd-6H-Wmy">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="tW5-AC-w5c"/>
                     </navigationItem>
                     <connections>
@@ -342,7 +342,7 @@
             </objects>
             <point key="canvasLocation" x="4129" y="49"/>
         </scene>
-        <!--Title-->
+        <!--View Controller-->
         <scene sceneID="fwT-s4-hWA">
             <objects>
                 <viewController id="8Cb-t6-Rlh" sceneMemberID="viewController">
@@ -355,7 +355,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="iNr-pg-eQn">
+                    <navigationItem key="navigationItem" id="iNr-pg-eQn">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="q88-nI-zaa"/>
                     </navigationItem>
                 </viewController>
@@ -365,9 +365,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="3vb-eE-LeC"/>
-        <segue reference="Kkp-eU-5Wh"/>
         <segue reference="Uzy-ax-wkm"/>
+        <segue reference="3vb-eE-LeC"/>
         <segue reference="O9o-ec-sN4"/>
     </inferredMetricsTieBreakers>
 </document>

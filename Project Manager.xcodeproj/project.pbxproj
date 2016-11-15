@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F02C80D1DD1182800D111BE /* PhaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F02C80C1DD1182800D111BE /* PhaseViewController.swift */; };
+		3F370E681DDBA9B3001844E1 /* CreateProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F370E671DDBA9B3001844E1 /* CreateProjectViewController.swift */; };
 		3F49D87D1DD2796A00AFD5F7 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49D87C1DD2796A00AFD5F7 /* SplitViewController.swift */; };
 		3FCCD73A1DCB990300978C4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCD7391DCB990300978C4A /* AppDelegate.swift */; };
 		3FCCD73C1DCB990300978C4A /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCD73B1DCB990300978C4A /* ProjectsViewController.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		3F02C80C1DD1182800D111BE /* PhaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhaseViewController.swift; sourceTree = "<group>"; };
+		3F370E671DDBA9B3001844E1 /* CreateProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProjectViewController.swift; sourceTree = "<group>"; };
 		3F49D87C1DD2796A00AFD5F7 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		3FCCD7361DCB990200978C4A /* Project Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FCCD7391DCB990300978C4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				3F02C80C1DD1182800D111BE /* PhaseViewController.swift */,
 				3F49D87C1DD2796A00AFD5F7 /* SplitViewController.swift */,
 				3FFE00591DD514A900305062 /* TaskViewController.swift */,
+				3F370E671DDBA9B3001844E1 /* CreateProjectViewController.swift */,
 			);
 			path = "Project Manager";
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			files = (
 				3FE397771DD257D1008AA520 /* ProjectViewController.swift in Sources */,
 				3FCCD73C1DCB990300978C4A /* ProjectsViewController.swift in Sources */,
+				3F370E681DDBA9B3001844E1 /* CreateProjectViewController.swift in Sources */,
 				3FCCD7521DCBA8A800978C4A /* ProjectStore.swift in Sources */,
 				3FCCD73A1DCB990300978C4A /* AppDelegate.swift in Sources */,
 				3F49D87D1DD2796A00AFD5F7 /* SplitViewController.swift in Sources */,
