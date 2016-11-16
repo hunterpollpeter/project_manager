@@ -17,7 +17,8 @@ class Project: NSObject {
                            "Details": details,
                            "Start": start,
                            "Deadline": deadline,
-                           "Complete": false]
+                           "Complete": false,
+                           "Notes": ["Hello","Cool note", "Sad note"]]
         self.phases = []
         super.init()
     }

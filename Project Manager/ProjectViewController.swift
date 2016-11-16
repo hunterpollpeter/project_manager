@@ -29,6 +29,10 @@ class ProjectViewController: UITableViewController {
             let tasksViewController = segue.destinationViewController as! PhaseViewController
             let cell = sender as! UITableViewCell
             tasksViewController.phase = project.phases[tableView.indexPathForCell(cell)!.row]
+        case "EditProject":
+            let navController = segue.destinationViewController as! UINavigationController
+            let projectEditViewController = navController.topViewController as! ProjectCreateEditViewController
+            projectEditViewController.project = project
         default:
             return
         }
@@ -84,6 +88,11 @@ class ProjectViewController: UITableViewController {
             case is NSDate:
                 let dateValue = value as! NSDate
                 detailText = dateFormatter.stringFromDate(dateValue)
+            case is [String]:
+                let valueStringArray = value as! [String]
+                detailText = String(valueStringArray.count)
+                cell.accessoryType = .DisclosureIndicator
+                cell.selectionStyle = .Default
             default:
                 detailText = String(value)
             }
@@ -100,6 +109,20 @@ class ProjectViewController: UITableViewController {
             return cell
         default:
             return UITableViewCell()
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section != 0 {
+            return
+        }
+        let key = Array(project.properties.keys)[indexPath.row]
+        let value = project.properties[key]
+        switch value {
+        case is [String]:
+            performSegueWithIdentifier("StringArray", sender: nil)
+        default:
+            return
         }
     }
 }
