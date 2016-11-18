@@ -10,7 +10,7 @@ import UIKit
 
 class PhaseViewController: UITableViewController {
     var phase: Phase!
-    let sections = ["General Information", "Tasks"]
+    let sections = ["Properties", "Tasks"]
     
     override func viewDidLoad() {
         if let phase = phase {
@@ -18,6 +18,22 @@ class PhaseViewController: UITableViewController {
             navigationItem.title = name
         }
     }
+    
+    @IBAction func Add(sender: AnyObject) {
+        let ac = UIAlertController(title: "Create New", message: "Create a new Property or Task.", preferredStyle: .ActionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        ac.addAction(cancelAction)
+        
+        let propertyAction = UIAlertAction(title: "Property", style: .Default, handler: nil)
+        ac.addAction(propertyAction)
+        
+        let phaseAction = UIAlertAction(title: "Task", style: .Default, handler: { (action) -> Void in self.performSegueWithIdentifier("CreateTask", sender: nil) })
+        ac.addAction(phaseAction)
+        
+        presentViewController(ac, animated: true, completion: nil)
+    }
+
     
     // MARK: - TableView Delegate
     

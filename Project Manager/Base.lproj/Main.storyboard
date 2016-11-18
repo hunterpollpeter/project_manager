@@ -58,7 +58,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gnh-fZ-UtP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2701" y="-677"/>
+            <point key="canvasLocation" x="2701" y="87"/>
         </scene>
         <!--Item-->
         <scene sceneID="6WR-Nc-ahf">
@@ -75,7 +75,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xfo-T6-kya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2701" y="-1437"/>
+            <point key="canvasLocation" x="2701" y="-677"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="8Zv-uE-v4o">
@@ -106,7 +106,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yuS-Ez-nXN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2669" y="861"/>
+            <point key="canvasLocation" x="2675" y="861"/>
         </scene>
         <!--Phase View Controller-->
         <scene sceneID="AYg-Y7-ZEj">
@@ -117,7 +117,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GeneralInformationCell" textLabel="jHe-NL-iSd" detailTextLabel="ErB-Cc-KJ6" style="IBUITableViewCellStyleValue1" id="5K8-OJ-vmn">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GeneralInformationCell" textLabel="jHe-NL-iSd" detailTextLabel="ErB-Cc-KJ6" style="IBUITableViewCellStyleValue1" id="5K8-OJ-vmn">
                                 <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5K8-OJ-vmn" id="3Yh-kb-dCW">
@@ -175,16 +175,20 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Kqg-q0-6hg">
-                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="edit" id="C1N-tC-vOs">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="xis-xI-fyu">
                             <connections>
-                                <segue destination="clt-oA-q1g" kind="show" identifier="EditPhase" id="Bqy-qz-R8g"/>
+                                <action selector="Add:" destination="Zjo-Wg-DyI" id="Thq-2z-OMK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="YAG-Ud-izG" kind="show" identifier="StringArray" id="KbR-qz-OBQ"/>
+                        <segue destination="8Cb-t6-Rlh" kind="show" identifier="CreateTask" id="a5b-Jf-T2R"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UPA-wA-hfY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4129" y="885"/>
+            <point key="canvasLocation" x="4129" y="861"/>
         </scene>
         <!--Title-->
         <scene sceneID="Cew-Xg-I00">
@@ -199,17 +203,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="yHb-vu-kMH">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="MHL-86-6ol">
-                            <connections>
-                                <segue destination="8Cb-t6-Rlh" kind="show" identifier="EditTask" id="dV3-kr-XNf"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Title" id="yHb-vu-kMH"/>
+                    <connections>
+                        <segue destination="YAG-Ud-izG" kind="show" identifier="StringArray" id="uY4-v6-Slq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0eG-b6-Nws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4842" y="909"/>
+            <point key="canvasLocation" x="4842" y="861"/>
         </scene>
         <!--Project View Controller-->
         <scene sceneID="22d-h1-Dlw">
@@ -220,7 +221,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GeneralInformationCell" textLabel="bBX-0R-8n4" detailTextLabel="xUi-Of-3LM" style="IBUITableViewCellStyleValue1" id="nSB-x5-F1g">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GeneralInformationCell" textLabel="bBX-0R-8n4" detailTextLabel="xUi-Of-3LM" style="IBUITableViewCellStyleValue1" id="nSB-x5-F1g">
                                 <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nSB-x5-F1g" id="GCE-cA-iuU">
@@ -278,14 +279,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="COC-Vk-d94">
-                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="edit" id="RbZ-FE-b2D">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="qkS-bi-NjF">
                             <connections>
-                                <segue destination="Nl6-am-h2J" kind="showDetail" identifier="EditProject" id="Ooj-a8-M2y"/>
+                                <action selector="Add:" destination="TnO-6N-7FK" id="LCZ-d1-Hoi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="YAG-Ud-izG" kind="show" identifier="StringArray" id="Gel-GT-hf1"/>
+                        <segue destination="clt-oA-q1g" kind="show" identifier="CreatePhase" id="47F-Ht-o84"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MAv-2u-6Zb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -308,7 +310,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N7X-6K-fFA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3417" y="1632"/>
+            <point key="canvasLocation" x="4129" y="1642"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ogb-jR-vbI">
@@ -324,12 +326,21 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JaO-wJ-nBP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4129" y="-653"/>
+            <point key="canvasLocation" x="3417" y="-677"/>
         </scene>
-        <!--Project Create Edit View Controller-->
+        <!--Project Create View Controller-->
         <scene sceneID="DZc-TR-82o">
             <objects>
-                <viewController id="nfx-4W-LaJ" customClass="ProjectCreateEditViewController" customModule="Project_Manager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="nfx-4W-LaJ" customClass="ProjectCreateViewController" customModule="Project_Manager" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Fyx-TJ-Rt7"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Es-o2-8Jm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MS1-aC-zBy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="tqP-Sh-0e4">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="4ba-fZ-kbe">
@@ -345,12 +356,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2FC-al-kbl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4129" y="87"/>
+            <point key="canvasLocation" x="3417" y="87"/>
         </scene>
         <!-- -->
         <scene sceneID="Xv0-Vw-Kwu">
             <objects>
-                <viewController id="clt-oA-q1g" sceneMemberID="viewController">
+                <viewController id="clt-oA-q1g" customClass="PhaseCreateViewController" customModule="Project_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mdk-PV-Zzd"/>
                         <viewControllerLayoutGuide type="bottom" id="g0g-w4-J5P"/>
@@ -369,12 +380,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hm3-tt-FfX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4842" y="107"/>
+            <point key="canvasLocation" x="4129" y="87"/>
         </scene>
-        <!--View Controller-->
+        <!--Task Create View Controller-->
         <scene sceneID="fwT-s4-hWA">
             <objects>
-                <viewController id="8Cb-t6-Rlh" sceneMemberID="viewController">
+                <viewController id="8Cb-t6-Rlh" customClass="TaskCreateViewController" customModule="Project_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nG0-gc-idu"/>
                         <viewControllerLayoutGuide type="bottom" id="Xhv-Ug-ckk"/>
@@ -390,13 +401,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DYL-jP-eCF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5554" y="131"/>
+            <point key="canvasLocation" x="4842" y="87"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="osD-rR-TLr"/>
         <segue reference="3vb-eE-LeC"/>
-        <segue reference="Uzy-ax-wkm"/>
-        <segue reference="dV3-kr-XNf"/>
+        <segue reference="47F-Ht-o84"/>
+        <segue reference="KbR-qz-OBQ"/>
+        <segue reference="a5b-Jf-T2R"/>
     </inferredMetricsTieBreakers>
 </document>

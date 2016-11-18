@@ -10,7 +10,7 @@ import UIKit
 
 class ProjectViewController: UITableViewController {
     var project: Project!
-    let sections = ["General Information", "Phases"]
+    let sections = ["Properties", "Phases"]
     
     override func viewDidLoad() {
         if let project = project {
@@ -19,8 +19,20 @@ class ProjectViewController: UITableViewController {
         }
     }
 
-    func prepareForUnwind() {
+    
+    @IBAction func Add(sender: AnyObject) {
+        let ac = UIAlertController(title: "Create New", message: "Create a new Property or Phase.", preferredStyle: .ActionSheet)
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        ac.addAction(cancelAction)
+        
+        let propertyAction = UIAlertAction(title: "Property", style: .Default, handler: nil)
+        ac.addAction(propertyAction)
+        
+        let phaseAction = UIAlertAction(title: "Phase", style: .Default, handler: { (action) -> Void in self.performSegueWithIdentifier("CreatePhase", sender: nil) })
+        ac.addAction(phaseAction)
+        
+        presentViewController(ac, animated: true, completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -29,10 +41,6 @@ class ProjectViewController: UITableViewController {
             let tasksViewController = segue.destinationViewController as! PhaseViewController
             let cell = sender as! UITableViewCell
             tasksViewController.phase = project.phases[tableView.indexPathForCell(cell)!.row]
-        case "EditProject":
-            let navController = segue.destinationViewController as! UINavigationController
-            let projectEditViewController = navController.topViewController as! ProjectCreateEditViewController
-            projectEditViewController.project = project
         default:
             return
         }
@@ -92,7 +100,6 @@ class ProjectViewController: UITableViewController {
                 let valueStringArray = value as! [String]
                 detailText = String(valueStringArray.count)
                 cell.accessoryType = .DisclosureIndicator
-                cell.selectionStyle = .Default
             default:
                 detailText = String(value)
             }

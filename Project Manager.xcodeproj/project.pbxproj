@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3F02C80D1DD1182800D111BE /* PhaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F02C80C1DD1182800D111BE /* PhaseViewController.swift */; };
-		3F370E681DDBA9B3001844E1 /* ProjectCreateEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F370E671DDBA9B3001844E1 /* ProjectCreateEditViewController.swift */; };
+		3F370E681DDBA9B3001844E1 /* ProjectCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F370E671DDBA9B3001844E1 /* ProjectCreateViewController.swift */; };
 		3F49D87D1DD2796A00AFD5F7 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49D87C1DD2796A00AFD5F7 /* SplitViewController.swift */; };
+		3F4C0EEF1DDF9A810098551B /* PhaseCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4C0EEE1DDF9A810098551B /* PhaseCreateViewController.swift */; };
+		3F4C0EF11DDF9FA10098551B /* TaskCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4C0EF01DDF9FA10098551B /* TaskCreateViewController.swift */; };
 		3FCCD73A1DCB990300978C4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCD7391DCB990300978C4A /* AppDelegate.swift */; };
 		3FCCD73C1DCB990300978C4A /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCD73B1DCB990300978C4A /* ProjectsViewController.swift */; };
 		3FCCD73F1DCB990300978C4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FCCD73D1DCB990300978C4A /* Main.storyboard */; };
@@ -25,8 +27,10 @@
 
 /* Begin PBXFileReference section */
 		3F02C80C1DD1182800D111BE /* PhaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhaseViewController.swift; sourceTree = "<group>"; };
-		3F370E671DDBA9B3001844E1 /* ProjectCreateEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCreateEditViewController.swift; sourceTree = "<group>"; };
+		3F370E671DDBA9B3001844E1 /* ProjectCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCreateViewController.swift; sourceTree = "<group>"; };
 		3F49D87C1DD2796A00AFD5F7 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		3F4C0EEE1DDF9A810098551B /* PhaseCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhaseCreateViewController.swift; sourceTree = "<group>"; };
+		3F4C0EF01DDF9FA10098551B /* TaskCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCreateViewController.swift; sourceTree = "<group>"; };
 		3FCCD7361DCB990200978C4A /* Project Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project Manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FCCD7391DCB990300978C4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FCCD73B1DCB990300978C4A /* ProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +90,9 @@
 				3F02C80C1DD1182800D111BE /* PhaseViewController.swift */,
 				3F49D87C1DD2796A00AFD5F7 /* SplitViewController.swift */,
 				3FFE00591DD514A900305062 /* TaskViewController.swift */,
-				3F370E671DDBA9B3001844E1 /* ProjectCreateEditViewController.swift */,
+				3F370E671DDBA9B3001844E1 /* ProjectCreateViewController.swift */,
+				3F4C0EEE1DDF9A810098551B /* PhaseCreateViewController.swift */,
+				3F4C0EF01DDF9FA10098551B /* TaskCreateViewController.swift */,
 			);
 			path = "Project Manager";
 			sourceTree = "<group>";
@@ -164,14 +170,16 @@
 			files = (
 				3FE397771DD257D1008AA520 /* ProjectViewController.swift in Sources */,
 				3FCCD73C1DCB990300978C4A /* ProjectsViewController.swift in Sources */,
-				3F370E681DDBA9B3001844E1 /* ProjectCreateEditViewController.swift in Sources */,
+				3F370E681DDBA9B3001844E1 /* ProjectCreateViewController.swift in Sources */,
 				3FCCD7521DCBA8A800978C4A /* ProjectStore.swift in Sources */,
 				3FCCD73A1DCB990300978C4A /* AppDelegate.swift in Sources */,
 				3F49D87D1DD2796A00AFD5F7 /* SplitViewController.swift in Sources */,
 				3FCCD7501DCBA17100978C4A /* Task.swift in Sources */,
 				3FCCD74C1DCB9D2D00978C4A /* Project.swift in Sources */,
+				3F4C0EF11DDF9FA10098551B /* TaskCreateViewController.swift in Sources */,
 				3FFE005A1DD514A900305062 /* TaskViewController.swift in Sources */,
 				3FCCD74E1DCBA0E100978C4A /* Phase.swift in Sources */,
+				3F4C0EEF1DDF9A810098551B /* PhaseCreateViewController.swift in Sources */,
 				3F02C80D1DD1182800D111BE /* PhaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
