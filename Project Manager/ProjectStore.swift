@@ -12,8 +12,8 @@ class ProjectStore {
     
     var allProjects = [Project]()
     
-    func createProject() -> Project {
-        let newProject = Project(random: true)
+    func createProject(name: String, details: String, start: NSDate, deadline: NSDate) -> Project {
+        let newProject = Project(name: name, details: details, start: start, deadline: deadline)
         
         allProjects.append(newProject)
         
@@ -37,9 +37,9 @@ class ProjectStore {
     }
     
     
-    init() {
-        for _ in 0..<5 {
-            createProject()
-        }
-    }
+//    init() {
+//        for _ in 0..<5 {
+//            createProject()
+//        }
+//    }
 }

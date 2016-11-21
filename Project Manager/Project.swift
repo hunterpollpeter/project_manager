@@ -17,30 +17,29 @@ class Project: NSObject {
                            "Details": details,
                            "Start": start,
                            "Deadline": deadline,
-                           "Complete": false,
-                           "Notes": ["Hello","Cool note", "Sad note"]]
+                           "Complete": false]
         self.phases = []
         super.init()
     }
 
     
-    convenience init(random: Bool = false) {
-        if random {
-            let names = ["Cool Project", "Fun Project", "Hard Project", "Easy Project"]
-            
-            let idx = arc4random_uniform(UInt32(names.count))
-            let randomName = names[Int(idx)]
-            
-            self.init(name: randomName, start: NSDate(), deadline: NSDate())
-            
-            let randomValue = arc4random_uniform(10)
-            for _ in 0...randomValue {
-                self.phases.append(Phase(random: true))
-            }
-            self.properties["Details"] = "These are some details about this project"
-        }
-        else {
-            self.init(name: "No Name", start: NSDate(), deadline: NSDate())
-        }
-    }
+//    convenience init(random: Bool = false) {
+//        if random {
+//            let names = ["Cool Project", "Fun Project", "Hard Project", "Easy Project"]
+//            
+//            let idx = arc4random_uniform(UInt32(names.count))
+//            let randomName = names[Int(idx)]
+//            
+//            self.init(name: randomName, start: NSDate(), deadline: NSDate())
+//            
+//            let randomValue = arc4random_uniform(10)
+//            for _ in 0...randomValue {
+//                self.phases.append(Phase(random: true))
+//            }
+//            self.properties["Details"] = "These are some details about this project"
+//        }
+//        else {
+//            self.init(name: "No Name", start: NSDate(), deadline: NSDate())
+//        }
+//    }
 }

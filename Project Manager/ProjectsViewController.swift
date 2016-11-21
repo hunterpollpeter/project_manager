@@ -12,12 +12,16 @@ class ProjectsViewController: UITableViewController {
     var projectStore: ProjectStore!
     
     @IBAction func addNewProject(sender: AnyObject) {
-        let newProject = projectStore.createProject()
-        
-        if let index = projectStore.allProjects.indexOf(newProject) {
-            let indexPath = NSIndexPath(forRow: index, inSection: 0)
-            tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        }
+//        let newProject = projectStore.createProject()
+//        
+//        if let index = projectStore.allProjects.indexOf(newProject) {
+//            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+//            tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+//        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
     }
     
     // MARK: - TableView Delegate
@@ -29,6 +33,10 @@ class ProjectsViewController: UITableViewController {
             let phasesViewController =  navController.topViewController as! ProjectViewController
             let cell = sender as! UITableViewCell
             phasesViewController.project = projectStore.allProjects[tableView.indexPathForCell(cell)!.row]
+        case "CreateProject":
+            let navController = segue.destinationViewController as! UINavigationController
+            let projectCreateViewController = navController.topViewController as! ProjectCreateViewController
+            projectCreateViewController.projectStore = projectStore
         default:
             return
         }

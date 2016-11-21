@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Projects-->
@@ -339,13 +340,24 @@
                     <view key="view" contentMode="scaleToFill" id="MS1-aC-zBy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2em-fy-85a">
+                                <rect key="frame" x="20" y="72" width="560" height="520"/>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="2em-fy-85a" secondAttribute="trailing" id="0zv-0u-Bk9"/>
+                            <constraint firstItem="2em-fy-85a" firstAttribute="top" secondItem="Fyx-TJ-Rt7" secondAttribute="bottom" constant="8" id="RSG-65-SGh"/>
+                            <constraint firstAttribute="bottom" secondItem="2em-fy-85a" secondAttribute="bottom" constant="8" id="bRN-nq-76b"/>
+                            <constraint firstItem="2em-fy-85a" firstAttribute="leading" secondItem="MS1-aC-zBy" secondAttribute="leadingMargin" id="oZ4-82-QDa"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="tqP-Sh-0e4">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="4ba-fZ-kbe">
                             <connections>
-                                <action selector="done:" destination="nfx-4W-LaJ" id="eco-WD-Z3t"/>
+                                <action selector="Done:" destination="nfx-4W-LaJ" id="6tM-PK-8kc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -406,8 +418,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="3vb-eE-LeC"/>
-        <segue reference="47F-Ht-o84"/>
+        <segue reference="Uzy-ax-wkm"/>
+        <segue reference="O9o-ec-sN4"/>
         <segue reference="KbR-qz-OBQ"/>
-        <segue reference="a5b-Jf-T2R"/>
     </inferredMetricsTieBreakers>
 </document>
