@@ -81,7 +81,8 @@ class ProjectViewController: UITableViewController {
             let value = project.properties[key]
             let dateFormatter: NSDateFormatter = {
                 let df = NSDateFormatter()
-                df.dateStyle = NSDateFormatterStyle.MediumStyle
+                df.dateStyle = .MediumStyle
+                df.timeStyle = .ShortStyle
                 return df
             }()
             var detailText = ""
