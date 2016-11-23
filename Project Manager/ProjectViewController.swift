@@ -18,21 +18,30 @@ class ProjectViewController: UITableViewController {
             navigationItem.title = name
         }
     }
-
+    
+    @IBOutlet var Add: UIBarButtonItem!
     
     @IBAction func Add(sender: AnyObject) {
-        let ac = UIAlertController(title: "Create New", message: "Create a new Property or Phase.", preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: "Create New", message: "Create a new Property or Phase.", preferredStyle: .ActionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        ac.addAction(cancelAction)
+        alertController.addAction(cancelAction)
         
         let propertyAction = UIAlertAction(title: "Property", style: .Default, handler: nil)
-        ac.addAction(propertyAction)
+        alertController.addAction(propertyAction)
         
         let phaseAction = UIAlertAction(title: "Phase", style: .Default, handler: { (action) -> Void in self.performSegueWithIdentifier("CreatePhase", sender: nil) })
-        ac.addAction(phaseAction)
+        alertController.addAction(phaseAction)
         
-        presentViewController(ac, animated: true, completion: nil)
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.barButtonItem = Add
+        }
+        
+        if let _ = alertController.message {
+            self.presentViewController(alertController, animated: true, completion: nil)
+            return
+        }
+
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -41,11 +50,13 @@ class ProjectViewController: UITableViewController {
             let tasksViewController = segue.destinationViewController as! PhaseViewController
             let cell = sender as! UITableViewCell
             tasksViewController.phase = project.phases[tableView.indexPathForCell(cell)!.row]
+        case "CreatePhase":
+            let phaseCreateViewController = segue.destinationViewController as! PhaseCreateViewController
+            phaseCreateViewController.project = project
         default:
             return
         }
     }
-
     
     // MARK: - TableView DataSource
     

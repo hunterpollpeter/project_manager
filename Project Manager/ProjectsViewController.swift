@@ -31,8 +31,8 @@ class ProjectsViewController: UITableViewController {
         case "ProjectDetail":
             let navController = segue.destinationViewController as! UINavigationController
             let phasesViewController =  navController.topViewController as! ProjectViewController
-            let cell = sender as! UITableViewCell
-            phasesViewController.project = projectStore.allProjects[tableView.indexPathForCell(cell)!.row]
+            let indexPath = tableView.indexPathForSelectedRow!
+            phasesViewController.project = projectStore.allProjects[indexPath.row]
         case "CreateProject":
             let navController = segue.destinationViewController as! UINavigationController
             let projectCreateViewController = navController.topViewController as! ProjectCreateViewController

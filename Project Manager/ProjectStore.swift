@@ -20,6 +20,13 @@ class ProjectStore {
         return newProject
     }
     
+    func createProject() -> Project
+    {
+        let project = Project(random: true)
+        allProjects.append(project)
+        return project
+    }
+    
     func removeProject(project: Project) {
         if let index = allProjects.indexOf(project) {
             allProjects.removeAtIndex(index)
@@ -37,9 +44,9 @@ class ProjectStore {
     }
     
     
-//    init() {
-//        for _ in 0..<5 {
-//            createProject()
-//        }
-//    }
+    init() {
+        for _ in 0..<5 {
+            createProject()
+        }
+    }
 }
