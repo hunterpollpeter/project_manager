@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3F02C80D1DD1182800D111BE /* PhaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F02C80C1DD1182800D111BE /* PhaseViewController.swift */; };
 		3F370E681DDBA9B3001844E1 /* ProjectCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F370E671DDBA9B3001844E1 /* ProjectCreateViewController.swift */; };
+		3F418DB31DF601D400335C71 /* SectionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F418DB21DF601D400335C71 /* SectionObject.swift */; };
 		3F49D87D1DD2796A00AFD5F7 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49D87C1DD2796A00AFD5F7 /* SplitViewController.swift */; };
 		3F4C0EEF1DDF9A810098551B /* PhaseCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4C0EEE1DDF9A810098551B /* PhaseCreateViewController.swift */; };
 		3F4C0EF11DDF9FA10098551B /* TaskCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4C0EF01DDF9FA10098551B /* TaskCreateViewController.swift */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		3F02C80C1DD1182800D111BE /* PhaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhaseViewController.swift; sourceTree = "<group>"; };
 		3F370E671DDBA9B3001844E1 /* ProjectCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCreateViewController.swift; sourceTree = "<group>"; };
+		3F418DB21DF601D400335C71 /* SectionObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionObject.swift; sourceTree = "<group>"; };
 		3F49D87C1DD2796A00AFD5F7 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		3F4C0EEE1DDF9A810098551B /* PhaseCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhaseCreateViewController.swift; sourceTree = "<group>"; };
 		3F4C0EF01DDF9FA10098551B /* TaskCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCreateViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				3F4C0EEE1DDF9A810098551B /* PhaseCreateViewController.swift */,
 				3F4C0EF01DDF9FA10098551B /* TaskCreateViewController.swift */,
 				3FB84A2F1DF5F25C005F8A40 /* StringEditViewController.swift */,
+				3F418DB21DF601D400335C71 /* SectionObject.swift */,
 			);
 			path = "Project Manager";
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F418DB31DF601D400335C71 /* SectionObject.swift in Sources */,
 				3FE397771DD257D1008AA520 /* ProjectViewController.swift in Sources */,
 				3FCCD73C1DCB990300978C4A /* ProjectsViewController.swift in Sources */,
 				3F370E681DDBA9B3001844E1 /* ProjectCreateViewController.swift in Sources */,

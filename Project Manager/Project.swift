@@ -8,18 +8,18 @@
 
 import UIKit
 
-class Project: NSObject {
+class Project: SectionObject {
     var phases: [Phase]!
-    var properties: [String: AnyObject]!
+//    var properties: [String: AnyObject]!
     
     init(name: String, details: String = "", start: NSDate, deadline: NSDate) {
+        super.init()
         self.properties = ["Name": name,
                            "Details": details,
                            "Start": start,
                            "Deadline": deadline,
                            "Complete": false]
         self.phases = []
-        super.init()
     }
 
     

@@ -11,12 +11,14 @@ import UIKit
 class ProjectViewController: UITableViewController {
     var project: Project!
     let sections = ["Properties", "Phases"]
+
     
-    override func viewDidLoad() {
+    override func viewWillAppear(animated: Bool) {
         if let project = project {
             let name = project.properties["Name"] as! String
             navigationItem.title = name
         }
+        tableView.reloadData()
     }
     
     @IBOutlet var Add: UIBarButtonItem!
@@ -55,7 +57,7 @@ class ProjectViewController: UITableViewController {
             phaseCreateViewController.project = project
         case "EditString":
             let stringEditViewController = segue.destinationViewController as! StringEditViewController
-            stringEditViewController.project = project
+            stringEditViewController.sectionObject = project
             stringEditViewController.key = sender as! String
         default:
             return

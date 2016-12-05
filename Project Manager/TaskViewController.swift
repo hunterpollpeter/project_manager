@@ -13,10 +13,22 @@ class TaskViewController: UITableViewController {
     
     let sections = ["Properties"]
     
-    override func viewDidLoad() {
+    override func viewWillAppear(animated: Bool) {
         if let task = task {
             let name = task.properties["Name"] as! String
             navigationItem.title = name
+        }
+        tableView.reloadData()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier! {
+        case "EditString":
+            let stringEditViewController = segue.destinationViewController as! StringEditViewController
+            stringEditViewController.sectionObject = task
+            stringEditViewController.key = sender as! String
+        default:
+            return
         }
     }
     
@@ -75,5 +87,18 @@ class TaskViewController: UITableViewController {
             return UITableViewCell()
         }
     }
-
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section != 0 {
+            return
+        }
+        let key = Array(task.properties.keys)[indexPath.row]
+        let value = task.properties[key]
+        switch value {
+        case is String:
+            performSegueWithIdentifier("EditString", sender: key)
+        default:
+            return
+        }
+    }
 }

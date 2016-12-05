@@ -12,11 +12,12 @@ class PhaseViewController: UITableViewController {
     var phase: Phase!
     let sections = ["Properties", "Tasks"]
     
-    override func viewDidLoad() {
+    override func viewWillAppear(animated: Bool) {
         if let phase = phase {
             let name = phase.properties["Name"] as! String
             navigationItem.title = name
         }
+        tableView.reloadData()
     }
     
     @IBOutlet var Add: UIBarButtonItem!
@@ -56,6 +57,10 @@ class PhaseViewController: UITableViewController {
         case "CreateTask":
             let taskCreateViewController = segue.destinationViewController as! TaskCreateViewController
             taskCreateViewController.phase = phase
+        case "EditString":
+            let stringEditViewController = segue.destinationViewController as! StringEditViewController
+            stringEditViewController.sectionObject = phase
+            stringEditViewController.key = sender as! String
         default:
             return
         }
@@ -126,6 +131,20 @@ class PhaseViewController: UITableViewController {
             return cell
         default:
             return UITableViewCell()
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section != 0 {
+            return
+        }
+        let key = Array(phase.properties.keys)[indexPath.row]
+        let value = phase.properties[key]
+        switch value {
+        case is String:
+            performSegueWithIdentifier("EditString", sender: key)
+        default:
+            return
         }
     }
 }

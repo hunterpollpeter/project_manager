@@ -10,13 +10,13 @@ import UIKit
 
 class StringEditViewController: UIViewController {
     
-    var project: Project!
+    var sectionObject: SectionObject!
     var key: String!
     @IBOutlet var propertyNameLabel: UILabel!
     @IBOutlet var propertyValueTextField: UITextField!
     
     @IBAction func Done(sender: AnyObject) {
-        project.properties[key] = propertyValueTextField.text!
+        sectionObject.properties[key] = propertyValueTextField.text!
         navigationController!.popViewControllerAnimated(true)
         let parentViewController = navigationController?.topViewController as! UITableViewController
         parentViewController.tableView.reloadData()
@@ -26,6 +26,6 @@ class StringEditViewController: UIViewController {
     override func viewDidLoad() {
         navigationItem.title = "Edit \(key)"
         propertyNameLabel.text = key
-        propertyValueTextField.text = project.properties[key] as? String
+        propertyValueTextField.text = sectionObject.properties[key] as? String
     }
 }

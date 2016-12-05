@@ -8,18 +8,17 @@
 
 import Foundation
 
-class Phase: NSObject {
+class Phase: SectionObject {
     var tasks: [Task]!
-    var properties: [String: AnyObject]!
     
     init(name: String, details: String = "", start: NSDate, deadline: NSDate) {
+        super.init()
         self.properties = ["Name": name,
                            "Details": details,
                            "Start": start,
                            "Deadline": deadline,
                            "Complete": false]
         self.tasks = []
-        super.init()
     }
 
     convenience init(random: Bool = false) {
