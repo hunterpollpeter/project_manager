@@ -9,7 +9,7 @@
 import Foundation
 
 class Phase: SectionObject {
-    var tasks: [Task]!
+//    var tasks: [Task]!
     
     init(name: String, details: String = "", start: NSDate, deadline: NSDate) {
         super.init()
@@ -18,7 +18,7 @@ class Phase: SectionObject {
                            "Start": start,
                            "Deadline": deadline,
                            "Complete": false]
-        self.tasks = []
+        self.childSections = []
     }
 
     convenience init(random: Bool = false) {
@@ -32,7 +32,7 @@ class Phase: SectionObject {
             
             let randomValue = arc4random_uniform(10)
             for _ in 0...randomValue {
-                self.tasks.append(Task(random: true))
+                self.childSections.append(Task(random: true))
             }
             self.properties["Details"] = "These are some details about this phase"
         }

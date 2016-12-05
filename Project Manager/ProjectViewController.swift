@@ -9,13 +9,13 @@
 import UIKit
 
 class ProjectViewController: UITableViewController {
-    var project: Project!
+    var sectionObject: SectionObject!
     let sections = ["Properties", "Phases"]
 
     
     override func viewWillAppear(animated: Bool) {
-        if let project = project {
-            let name = project.properties["Name"] as! String
+        if let sectionObject = sectionObject {
+            let name = sectionObject.properties["Name"] as! String
             navigationItem.title = name
         }
         tableView.reloadData()
@@ -51,13 +51,13 @@ class ProjectViewController: UITableViewController {
         case "PhaseDetail":
             let tasksViewController = segue.destinationViewController as! PhaseViewController
             let cell = sender as! UITableViewCell
-            tasksViewController.phase = project.phases[tableView.indexPathForCell(cell)!.row]
+            tasksViewController.sectionObject = sectionObject.childSections[tableView.indexPathForCell(cell)!.row]
         case "CreatePhase":
             let phaseCreateViewController = segue.destinationViewController as! PhaseCreateViewController
-            phaseCreateViewController.project = project
+            phaseCreateViewController.sectionObject = sectionObject
         case "EditString":
             let stringEditViewController = segue.destinationViewController as! StringEditViewController
-            stringEditViewController.sectionObject = project
+            stringEditViewController.sectionObject = sectionObject
             stringEditViewController.key = sender as! String
         default:
             return
@@ -77,12 +77,12 @@ class ProjectViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            if let project = project {
-                return project.properties.count
+            if let sectionObject = sectionObject {
+                return sectionObject.properties.count
             }
         case 1:
-            if let project = project {
-                return project.phases.count
+            if let sectionObject = sectionObject {
+                return sectionObject.childSections.count
             }
         default:
             return 0
@@ -94,8 +94,8 @@ class ProjectViewController: UITableViewController {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("GeneralInformationCell", forIndexPath: indexPath)
-            let key = Array(project.properties.keys)[indexPath.row]
-            let value = project.properties[key]
+            let key = Array(sectionObject.properties.keys)[indexPath.row]
+            let value = sectionObject.properties[key]
             let dateFormatter: NSDateFormatter = {
                 let df = NSDateFormatter()
                 df.dateStyle = .MediumStyle
@@ -129,7 +129,7 @@ class ProjectViewController: UITableViewController {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("DetailCell", forIndexPath: indexPath)
-            let phase = project.phases[indexPath.row] 
+            let phase = sectionObject.childSections[indexPath.row]
             let name = phase.properties["Name"] as! String
             let details = phase.properties["Details"] as! String
             cell.textLabel?.text = name
@@ -145,8 +145,8 @@ class ProjectViewController: UITableViewController {
         if indexPath.section != 0 {
             return
         }
-        let key = Array(project.properties.keys)[indexPath.row]
-        let value = project.properties[key]
+        let key = Array(sectionObject.properties.keys)[indexPath.row]
+        let value = sectionObject.properties[key]
         switch value {
         case is String:
             performSegueWithIdentifier("EditString", sender: key)

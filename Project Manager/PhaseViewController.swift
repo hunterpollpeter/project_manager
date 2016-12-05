@@ -9,12 +9,12 @@
 import UIKit
 
 class PhaseViewController: UITableViewController {
-    var phase: Phase!
+    var sectionObject: SectionObject!
     let sections = ["Properties", "Tasks"]
     
     override func viewWillAppear(animated: Bool) {
-        if let phase = phase {
-            let name = phase.properties["Name"] as! String
+        if let sectionObject = sectionObject {
+            let name = sectionObject.properties["Name"] as! String
             navigationItem.title = name
         }
         tableView.reloadData()
@@ -53,13 +53,13 @@ class PhaseViewController: UITableViewController {
         case "TaskDetail":
             let taskViewController = segue.destinationViewController as! TaskViewController
             let cell = sender as! UITableViewCell
-            taskViewController.task = phase.tasks[tableView.indexPathForCell(cell)!.row]
+            taskViewController.sectionObject = sectionObject.childSections[tableView.indexPathForCell(cell)!.row]
         case "CreateTask":
             let taskCreateViewController = segue.destinationViewController as! TaskCreateViewController
-            taskCreateViewController.phase = phase
+            taskCreateViewController.sectionObject = sectionObject
         case "EditString":
             let stringEditViewController = segue.destinationViewController as! StringEditViewController
-            stringEditViewController.sectionObject = phase
+            stringEditViewController.sectionObject = sectionObject
             stringEditViewController.key = sender as! String
         default:
             return
@@ -79,12 +79,12 @@ class PhaseViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            if let phase = phase {
-                return phase.properties.count
+            if let sectionObject = sectionObject {
+                return sectionObject.properties.count
             }
         case 1:
-            if let phase = phase {
-                return phase.tasks.count
+            if let sectionObject = sectionObject {
+                return sectionObject.childSections.count
             }
         default:
             return 0
@@ -97,8 +97,8 @@ class PhaseViewController: UITableViewController {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("GeneralInformationCell", forIndexPath: indexPath)
-            let key = Array(phase.properties.keys)[indexPath.row]
-            let value = phase.properties[key]
+            let key = Array(sectionObject.properties.keys)[indexPath.row]
+            let value = sectionObject.properties[key]
             let dateFormatter: NSDateFormatter = {
                 let df = NSDateFormatter()
                 df.dateStyle = NSDateFormatterStyle.MediumStyle
@@ -123,9 +123,9 @@ class PhaseViewController: UITableViewController {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("PercentCell", forIndexPath: indexPath)
-            let task = phase.tasks[indexPath.row]
-            let name = task.properties["Name"] as! String
-            let details = task.properties["Details"] as! String
+            let childSectionObject = sectionObject.childSections[indexPath.row]
+            let name = childSectionObject.properties["Name"] as! String
+            let details = childSectionObject.properties["Details"] as! String
             cell.textLabel?.text = name
             cell.detailTextLabel?.text = details
             return cell
@@ -138,8 +138,8 @@ class PhaseViewController: UITableViewController {
         if indexPath.section != 0 {
             return
         }
-        let key = Array(phase.properties.keys)[indexPath.row]
-        let value = phase.properties[key]
+        let key = Array(sectionObject.properties.keys)[indexPath.row]
+        let value = sectionObject.properties[key]
         switch value {
         case is String:
             performSegueWithIdentifier("EditString", sender: key)

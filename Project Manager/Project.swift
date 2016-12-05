@@ -9,7 +9,7 @@
 import UIKit
 
 class Project: SectionObject {
-    var phases: [Phase]!
+//    var phases: [Phase]!
 //    var properties: [String: AnyObject]!
     
     init(name: String, details: String = "", start: NSDate, deadline: NSDate) {
@@ -19,7 +19,7 @@ class Project: SectionObject {
                            "Start": start,
                            "Deadline": deadline,
                            "Complete": false]
-        self.phases = []
+        self.childSections = []
     }
 
     
@@ -34,7 +34,7 @@ class Project: SectionObject {
             
             let randomValue = arc4random_uniform(10)
             for _ in 0...randomValue {
-                self.phases.append(Phase(random: true))
+                self.childSections.append(Phase(random: true))
             }
             self.properties["Details"] = "These are some details about this project"
         }

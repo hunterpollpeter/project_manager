@@ -9,7 +9,7 @@
 import UIKit
 
 class TaskCreateViewController: UIViewController, UITextFieldDelegate {
-    var phase: Phase!
+    var sectionObject: SectionObject!
     var startDatePicker: UIDatePicker!
     var deadlineDatePicker: UIDatePicker!
     var startTimePicker: UIDatePicker!
@@ -41,8 +41,8 @@ class TaskCreateViewController: UIViewController, UITextFieldDelegate {
         let deadlineTimeString = deadlineTimeTextField.text!
         let start = dateFormatter.dateFromString("\(startDateString) \(startTimeString)")
         let deadline = dateFormatter.dateFromString("\(deadlineDateString) \(deadlineTimeString)")
-        let phaseStart = phase.properties["Start"] as! NSDate
-        let phaseDeadline = phase.properties["Deadline"] as! NSDate
+        let phaseStart = sectionObject.properties["Start"] as! NSDate
+        let phaseDeadline = sectionObject.properties["Deadline"] as! NSDate
         
         if name.isEmpty {
             alertController.message = "Name field is empty."
@@ -83,7 +83,7 @@ class TaskCreateViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        phase.tasks.append(Task(name: name, details: details, start: start!, deadline: deadline!))
+        sectionObject.childSections.append(Task(name: name, details: details, start: start!, deadline: deadline!))
         
         navigationController!.popViewControllerAnimated(true)
         let phaseViewController = navigationController?.topViewController as! PhaseViewController

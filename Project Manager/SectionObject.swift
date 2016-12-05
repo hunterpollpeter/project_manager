@@ -10,5 +10,5 @@ import Foundation
 
 class SectionObject: NSObject {
     var properties: [String: AnyObject]!
-//    var childSections: [SectionObject]!
+    var childSections: [SectionObject]!
 }

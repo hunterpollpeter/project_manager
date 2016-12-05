@@ -9,13 +9,13 @@
 import UIKit
 
 class TaskViewController: UITableViewController {
-    var task: Task!
+    var sectionObject: SectionObject!
     
     let sections = ["Properties"]
     
     override func viewWillAppear(animated: Bool) {
-        if let task = task {
-            let name = task.properties["Name"] as! String
+        if let sectionObject = sectionObject {
+            let name = sectionObject.properties["Name"] as! String
             navigationItem.title = name
         }
         tableView.reloadData()
@@ -25,7 +25,7 @@ class TaskViewController: UITableViewController {
         switch segue.identifier! {
         case "EditString":
             let stringEditViewController = segue.destinationViewController as! StringEditViewController
-            stringEditViewController.sectionObject = task
+            stringEditViewController.sectionObject = sectionObject
             stringEditViewController.key = sender as! String
         default:
             return
@@ -45,8 +45,8 @@ class TaskViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            if let task = task {
-                return task.properties.count
+            if let sectionObject = sectionObject {
+                return sectionObject.properties.count
             }
         default:
             return 0
@@ -59,8 +59,8 @@ class TaskViewController: UITableViewController {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("GeneralInformationCell", forIndexPath: indexPath)
-            let key = Array(task.properties.keys)[indexPath.row]
-            let value = task.properties[key]
+            let key = Array(sectionObject.properties.keys)[indexPath.row]
+            let value = sectionObject.properties[key]
             let dateFormatter: NSDateFormatter = {
                 let df = NSDateFormatter()
                 df.dateStyle = NSDateFormatterStyle.MediumStyle
@@ -92,8 +92,8 @@ class TaskViewController: UITableViewController {
         if indexPath.section != 0 {
             return
         }
-        let key = Array(task.properties.keys)[indexPath.row]
-        let value = task.properties[key]
+        let key = Array(sectionObject.properties.keys)[indexPath.row]
+        let value = sectionObject.properties[key]
         switch value {
         case is String:
             performSegueWithIdentifier("EditString", sender: key)
