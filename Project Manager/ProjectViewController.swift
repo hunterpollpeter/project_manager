@@ -53,6 +53,10 @@ class ProjectViewController: UITableViewController {
         case "CreatePhase":
             let phaseCreateViewController = segue.destinationViewController as! PhaseCreateViewController
             phaseCreateViewController.project = project
+        case "EditString":
+            let stringEditViewController = segue.destinationViewController as! StringEditViewController
+            stringEditViewController.project = project
+            stringEditViewController.key = sender as! String
         default:
             return
         }
@@ -102,16 +106,20 @@ class ProjectViewController: UITableViewController {
             case is String:
                 let stringValue = value as! String
                 detailText = stringValue
+                cell.tag = 0
             case is Bool:
                 let boolValue = value as! Bool
                 detailText = boolValue ? "Yes" : "No"
+                cell.tag = 1
             case is NSDate:
                 let dateValue = value as! NSDate
                 detailText = dateFormatter.stringFromDate(dateValue)
+                cell.tag = 2
             case is [String]:
                 let valueStringArray = value as! [String]
                 detailText = String(valueStringArray.count)
                 cell.accessoryType = .DisclosureIndicator
+                cell.tag = 3
             default:
                 detailText = String(value)
             }
@@ -138,8 +146,8 @@ class ProjectViewController: UITableViewController {
         let key = Array(project.properties.keys)[indexPath.row]
         let value = project.properties[key]
         switch value {
-        case is [String]:
-            performSegueWithIdentifier("StringArray", sender: nil)
+        case is String:
+            performSegueWithIdentifier("EditString", sender: key)
         default:
             return
         }
