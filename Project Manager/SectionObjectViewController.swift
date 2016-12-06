@@ -15,6 +15,8 @@ class SectionObjectViewController: UITableViewController {
         if let sectionObject = sectionObject {
             let name = sectionObject.properties["Name"] as! String
             navigationItem.title = name
+        } else {
+            Add.enabled = false
         }
         tableView.reloadData()
     }

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F370E681DDBA9B3001844E1 /* ProjectCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F370E671DDBA9B3001844E1 /* ProjectCreateViewController.swift */; };
 		3F418DB31DF601D400335C71 /* SectionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F418DB21DF601D400335C71 /* SectionObject.swift */; };
 		3F49D87D1DD2796A00AFD5F7 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49D87C1DD2796A00AFD5F7 /* SplitViewController.swift */; };
 		3F4C0EEF1DDF9A810098551B /* SectionObjectCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4C0EEE1DDF9A810098551B /* SectionObjectCreateViewController.swift */; };
@@ -25,7 +24,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3F370E671DDBA9B3001844E1 /* ProjectCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCreateViewController.swift; sourceTree = "<group>"; };
 		3F418DB21DF601D400335C71 /* SectionObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionObject.swift; sourceTree = "<group>"; };
 		3F49D87C1DD2796A00AFD5F7 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		3F4C0EEE1DDF9A810098551B /* SectionObjectCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionObjectCreateViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +84,6 @@
 				3FCCD74F1DCBA17100978C4A /* Task.swift */,
 				3FCCD7511DCBA8A800978C4A /* ProjectStore.swift */,
 				3F49D87C1DD2796A00AFD5F7 /* SplitViewController.swift */,
-				3F370E671DDBA9B3001844E1 /* ProjectCreateViewController.swift */,
 				3F4C0EEE1DDF9A810098551B /* SectionObjectCreateViewController.swift */,
 				3FB84A2F1DF5F25C005F8A40 /* StringEditViewController.swift */,
 				3F418DB21DF601D400335C71 /* SectionObject.swift */,
@@ -168,7 +165,6 @@
 				3F418DB31DF601D400335C71 /* SectionObject.swift in Sources */,
 				3FE397771DD257D1008AA520 /* SectionObjectViewController.swift in Sources */,
 				3FCCD73C1DCB990300978C4A /* ProjectsViewController.swift in Sources */,
-				3F370E681DDBA9B3001844E1 /* ProjectCreateViewController.swift in Sources */,
 				3FCCD7521DCBA8A800978C4A /* ProjectStore.swift in Sources */,
 				3FCCD73A1DCB990300978C4A /* AppDelegate.swift in Sources */,
 				3FB84A301DF5F25C005F8A40 /* StringEditViewController.swift in Sources */,

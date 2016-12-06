@@ -11,6 +11,8 @@ import UIKit
 class SectionObjectCreateViewController: UIViewController, UITextFieldDelegate {
     
     var sectionObject: SectionObject!
+    var projectStore: ProjectStore?
+    
     var startDatePicker: UIDatePicker!
     var deadlineDatePicker: UIDatePicker!
     var startTimePicker: UIDatePicker!
@@ -31,7 +33,6 @@ class SectionObjectCreateViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func Done() {
         
-        
         let sectionObjectType = sectionObject is Project ? "Phase" : sectionObject is Phase ? "Task" : "Project"
         let sectionObjectParentType = sectionObject is Project ? "Project" : "Phase"
         
@@ -49,8 +50,6 @@ class SectionObjectCreateViewController: UIViewController, UITextFieldDelegate {
         let deadlineTimeString = deadlineTimeTextField.text!
         let start = dateFormatter.dateFromString("\(startDateString) \(startTimeString)")
         let deadline = dateFormatter.dateFromString("\(deadlineDateString) \(deadlineTimeString)")
-        let parentStart = sectionObject.properties["Start"] as! NSDate
-        let parentDeadline = sectionObject.properties["Deadline"] as! NSDate
         
         if name.isEmpty {
             alertController.message = "Name field is empty."
@@ -79,11 +78,17 @@ class SectionObjectCreateViewController: UIViewController, UITextFieldDelegate {
         else if start!.laterDate(deadline!) == start {
             alertController.message = "Start date must be earlier than deadline."
         }
-        else if start!.earlierDate(parentStart) == start {
-            alertController.message = "Start date cannot be before \(sectionObjectParentType) start date."
-        }
-        else if deadline!.laterDate(parentDeadline) == deadline {
-            alertController.message = "Deadline cannot be after \(sectionObjectParentType) deadline."
+        else if let sectionObject = sectionObject {
+            let parentStart = sectionObject.properties["Start"] as! NSDate
+            let parentDeadline = sectionObject.properties["Deadline"] as! NSDate
+            
+            if start!.earlierDate(parentStart) == start {
+                alertController.message = "Start date cannot be before \(sectionObjectParentType) start date."
+            }
+            
+            if deadline!.laterDate(parentDeadline) == deadline {
+                alertController.message = "Deadline cannot be after \(sectionObjectParentType) deadline."
+            }
         }
         
         if let _ = alertController.message {
@@ -98,13 +103,37 @@ class SectionObjectCreateViewController: UIViewController, UITextFieldDelegate {
         else if sectionObject is Phase {
             childSectionObject = Task(name: name, details: details, start: start!, deadline: deadline!)
         }
-        else {
-            childSectionObject = Project(name: name, details: details, start: start!, deadline: deadline!)
+        else if let projectStore = projectStore {
+            let project = projectStore.createProject(name, details: details, start: start!, deadline: deadline!)
+            
+            // Device does NOT support SplitViewController
+            if let parentNavController = self.parentViewController?.navigationController {
+                parentNavController.popViewControllerAnimated(true)
+                let projectsViewController = parentNavController.topViewController as! ProjectsViewController
+                projectsViewController.tableView.reloadData()
+            }
+            // Device does support SplitViewController
+            else {
+                let parent = parentViewController as! UINavigationController
+                let splitViewController = parent.parentViewController as! SplitViewController
+                let navController = splitViewController.viewControllers[0] as! UINavigationController
+                let projectsViewController =  navController.topViewController as! ProjectsViewController
+                projectsViewController.tableView.reloadData()
+                let index = projectStore.allProjects.indexOf(project)!
+                let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                projectsViewController.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
+                projectsViewController.tableView.cellForRowAtIndexPath(indexPath)?.setSelected(true, animated: true)
+                projectsViewController.performSegueWithIdentifier("ProjectDetail", sender: nil)
+            }
+            // Exit function
+            return
         }
         
-        addChildSectionObject(sectionObject, child: childSectionObject)
+        sectionObject.childSections.append(childSectionObject)
 
-        returnToParent()
+        navigationController!.popViewControllerAnimated(true)
+        let projectViewController = navigationController?.topViewController as! SectionObjectViewController
+        projectViewController.tableView.reloadData()
     }
     
     // MARK: TextField Delegates
@@ -123,9 +152,7 @@ class SectionObjectCreateViewController: UIViewController, UITextFieldDelegate {
         if let _ = dateFormatter.dateFromString(currentString + string) {
             return true
         }
-        else {
-            return false
-        }
+        return false
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -241,15 +268,5 @@ class SectionObjectCreateViewController: UIViewController, UITextFieldDelegate {
         }
         
         dismissKeyboard()
-    }
-    
-    func returnToParent() {
-        navigationController!.popViewControllerAnimated(true)
-        let projectViewController = navigationController?.topViewController as! SectionObjectViewController
-        projectViewController.tableView.reloadData()
-    }
-    
-    func addChildSectionObject(parent: SectionObject, child: SectionObject) {
-        parent.childSections.append(child)
     }
 }

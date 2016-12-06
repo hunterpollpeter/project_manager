@@ -35,7 +35,7 @@ class ProjectsViewController: UITableViewController {
             phasesViewController.sectionObject = projectStore.allProjects[indexPath.row]
         case "CreateProject":
             let navController = segue.destinationViewController as! UINavigationController
-            let projectCreateViewController = navController.topViewController as! ProjectCreateViewController
+            let projectCreateViewController = navController.topViewController as! SectionObjectCreateViewController
             projectCreateViewController.projectStore = projectStore
         default:
             return

@@ -442,10 +442,10 @@
             </objects>
             <point key="canvasLocation" x="3417" y="-677"/>
         </scene>
-        <!--Project Create View Controller-->
+        <!--Section Object Create View Controller-->
         <scene sceneID="agw-3u-O4u">
             <objects>
-                <viewController id="YOT-Lc-aOB" customClass="ProjectCreateViewController" customModule="Project_Manager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YOT-Lc-aOB" customClass="SectionObjectCreateViewController" customModule="Project_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LD1-MU-9Wb"/>
                         <viewControllerLayoutGuide type="bottom" id="Cqz-GW-ON5"/>
@@ -888,9 +888,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Eve-1M-MLg"/>
-        <segue reference="3vb-eE-LeC"/>
         <segue reference="KbR-qz-OBQ"/>
+        <segue reference="VLw-JU-QaJ"/>
+        <segue reference="Eve-1M-MLg"/>
         <segue reference="90p-OL-tuR"/>
     </inferredMetricsTieBreakers>
 </document>
