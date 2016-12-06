@@ -32,7 +32,6 @@ class SectionObjectCreateViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func Done() {
-        
         let sectionObjectType = sectionObject is Project ? "Phase" : sectionObject is Phase ? "Task" : "Project"
         let sectionObjectParentType = sectionObject is Project ? "Project" : "Phase"
         
@@ -129,7 +128,7 @@ class SectionObjectCreateViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        sectionObject.childSections.append(childSectionObject)
+        sectionObject.addChildSectionObject(childSectionObject)
 
         navigationController!.popViewControllerAnimated(true)
         let projectViewController = navigationController?.topViewController as! SectionObjectViewController

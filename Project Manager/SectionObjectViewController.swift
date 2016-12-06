@@ -67,6 +67,10 @@ class SectionObjectViewController: UITableViewController {
             let stringEditViewController = segue.destinationViewController as! StringEditViewController
             stringEditViewController.sectionObject = sectionObject
             stringEditViewController.key = sender as! String
+        case "EditDateTime":
+            let dateTimeEditViewController = segue.destinationViewController as! DateTimeEditViewController
+            dateTimeEditViewController.sectionObject = sectionObject
+            dateTimeEditViewController.key = sender as! String
         default:
             return
         }
@@ -122,20 +126,18 @@ class SectionObjectViewController: UITableViewController {
             case is String:
                 let stringValue = value as! String
                 detailText = stringValue
-                cell.tag = 0
             case is Bool:
                 let boolValue = value as! Bool
-                detailText = boolValue ? "Yes" : "No"
-                cell.tag = 1
+                cell.selectionStyle = .None
+                detailText = boolValue ? "" : "No"
+                cell.accessoryType =  boolValue ? .Checkmark : .None
             case is NSDate:
                 let dateValue = value as! NSDate
                 detailText = dateFormatter.stringFromDate(dateValue)
-                cell.tag = 2
             case is [String]:
                 let valueStringArray = value as! [String]
                 detailText = String(valueStringArray.count)
                 cell.accessoryType = .DisclosureIndicator
-                cell.tag = 3
             default:
                 detailText = String(value)
             }
@@ -143,12 +145,24 @@ class SectionObjectViewController: UITableViewController {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("DetailCell", forIndexPath: indexPath)
-            let phase = sectionObject.childSections[indexPath.row]
-            let name = phase.properties["Name"] as! String
-            let details = phase.properties["Details"] as! String
+            let childSectionObject = sectionObject.childSections[indexPath.row]
+            let name = childSectionObject.properties["Name"] as! String
+            let details = childSectionObject.properties["Details"] as! String
             cell.textLabel?.text = name
             cell.detailTextLabel?.text = details
-
+            if childSectionObject is Phase {
+                let numberFormatter = NSNumberFormatter()
+                numberFormatter.numberStyle = .PercentStyle
+                let percentLabel = UILabel()
+                percentLabel.text = numberFormatter.stringFromNumber(childSectionObject.percentComplete())
+                percentLabel.sizeToFit()
+                cell.accessoryView = percentLabel
+            }
+            else {
+                if childSectionObject.properties["Complete"] as! Bool {
+                    cell.accessoryType = .Checkmark
+                }
+            }
             return cell
         default:
             return UITableViewCell()
@@ -164,6 +178,13 @@ class SectionObjectViewController: UITableViewController {
         switch value {
         case is String:
             performSegueWithIdentifier("EditString", sender: key)
+        case is NSDate:
+            performSegueWithIdentifier("EditDateTime", sender: key)
+        case is Bool:
+            if sectionObject is Task {
+                sectionObject.toggleComplete()
+                tableView.reloadData()
+            }
         default:
             return
         }

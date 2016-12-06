@@ -22,6 +22,9 @@ class StringEditViewController: UIViewController {
         parentViewController.tableView.reloadData()
     }
     
+    @IBAction func dismissKeyboard() {
+        view.endEditing(false)
+    }
     
     override func viewDidLoad() {
         navigationItem.title = "Edit \(key)"

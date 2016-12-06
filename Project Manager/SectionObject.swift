@@ -12,4 +12,28 @@ class SectionObject: NSObject {
     var tableSections = ["Properties"]
     var properties: [String: AnyObject]!
     var childSections: [SectionObject]!
+    var parent: SectionObject?
+    
+    func addChildSectionObject(child: SectionObject) {
+        child.parent = self
+        childSections.append(child)
+    }
+    
+    func toggleComplete() {
+        let complete = properties["Complete"] as! Bool
+        properties["Complete"] = !complete
+        parent!.checkComplete()
+    }
+    
+    func percentComplete() -> Float {
+        let complete = childSections.filter({$0.properties["Complete"] as! Bool})
+        return Float(complete.count) / Float(childSections.count)
+    }
+    
+    private func checkComplete() {
+        properties["Complete"] = percentComplete() == 1
+        if let parent = parent {
+            parent.checkComplete()
+        }
+    }
 }

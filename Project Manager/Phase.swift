@@ -32,7 +32,7 @@ class Phase: SectionObject {
             
             let randomValue = arc4random_uniform(10)
             for _ in 0...randomValue {
-                self.childSections.append(Task(random: true))
+                self.addChildSectionObject(Task(random: true))
             }
             self.properties["Details"] = "These are some details about this phase"
         }

@@ -328,10 +328,10 @@
             </objects>
             <point key="canvasLocation" x="3417" y="861"/>
         </scene>
-        <!--View Controller-->
+        <!--Date Time Edit View Controller-->
         <scene sceneID="kZK-Ro-9zW">
             <objects>
-                <viewController id="B2c-sY-Tnv" sceneMemberID="viewController">
+                <viewController id="B2c-sY-Tnv" customClass="DateTimeEditViewController" customModule="Project_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="44W-Q1-meP"/>
                         <viewControllerLayoutGuide type="bottom" id="S6C-U8-q1r"/>
@@ -339,10 +339,74 @@
                     <view key="view" contentMode="scaleToFill" id="Nmh-JU-oJX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="V8U-1o-4Vp">
+                                <rect key="frame" x="20" y="72" width="560" height="520"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="olN-WN-iol">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Property" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0XY-ea-kXx">
+                                                <rect key="frame" x="0.0" y="0.0" width="67" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IPC-ts-BTR">
+                                                <rect key="frame" x="75" y="0.0" width="485" height="30"/>
+                                                <subviews>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vv1-bP-EAO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="239" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VKO-4U-pnz">
+                                                        <rect key="frame" x="247" y="0.0" width="238" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3OV-ee-g9y">
+                                        <rect key="frame" x="0.0" y="38" width="560" height="482"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="V8U-1o-4Vp" firstAttribute="top" secondItem="44W-Q1-meP" secondAttribute="bottom" constant="8" id="ULS-LU-kU5"/>
+                            <constraint firstItem="V8U-1o-4Vp" firstAttribute="leading" secondItem="Nmh-JU-oJX" secondAttribute="leadingMargin" id="ag7-pS-0Yo"/>
+                            <constraint firstItem="V8U-1o-4Vp" firstAttribute="trailing" secondItem="Nmh-JU-oJX" secondAttribute="trailingMargin" id="eG4-xC-3xM"/>
+                            <constraint firstItem="S6C-U8-q1r" firstAttribute="top" secondItem="V8U-1o-4Vp" secondAttribute="bottom" constant="8" id="ngy-RQ-IXV"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="ZAN-fN-YKU" appends="YES" id="FgO-fk-tMa"/>
+                        </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="pDX-3V-CEZ">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="7sE-Gd-Ly1">
+                            <connections>
+                                <action selector="Done:" destination="B2c-sY-Tnv" id="TgS-uq-Bys"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="propertyDateTextField" destination="Vv1-bP-EAO" id="dPf-d3-TI7"/>
+                        <outlet property="propertyNameLabel" destination="0XY-ea-kXx" id="BNY-w2-ONf"/>
+                        <outlet property="propertyTimeTextField" destination="VKO-4U-pnz" id="sSB-IQ-SuW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Py-fo-Cse" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ZAN-fN-YKU">
+                    <connections>
+                        <action selector="dismissKeyboard" destination="B2c-sY-Tnv" id="cuq-e7-GOh"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3417" y="1641"/>
         </scene>
@@ -403,12 +467,16 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="bottomMargin" secondItem="3ts-L1-BbZ" secondAttribute="bottom" constant="8" id="LZz-p3-GUR"/>
                             <constraint firstItem="3ts-L1-BbZ" firstAttribute="trailing" secondItem="Z00-RU-qgb" secondAttribute="trailingMargin" id="bkA-rU-rvX"/>
                             <constraint firstItem="3ts-L1-BbZ" firstAttribute="top" secondItem="xFa-xH-Kry" secondAttribute="bottom" constant="8" id="uBz-Ua-FwD"/>
                             <constraint firstItem="3ts-L1-BbZ" firstAttribute="leading" secondItem="Z00-RU-qgb" secondAttribute="leadingMargin" id="w7F-DZ-pU2"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="3qY-vV-hog" appends="YES" id="Mak-Dc-DFD"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="c9Y-19-XRu">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="ruD-BE-MrI">
@@ -423,6 +491,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CKf-Iy-Py9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="3qY-vV-hog">
+                    <connections>
+                        <action selector="dismissKeyboard" destination="fBb-hb-T4S" id="0Gk-9c-IJq"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4842" y="1641"/>
         </scene>
@@ -888,9 +961,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KbR-qz-OBQ"/>
         <segue reference="VLw-JU-QaJ"/>
-        <segue reference="Eve-1M-MLg"/>
-        <segue reference="90p-OL-tuR"/>
+        <segue reference="2Fk-vE-3hO"/>
+        <segue reference="0Nk-De-2ff"/>
+        <segue reference="Gel-GT-hf1"/>
     </inferredMetricsTieBreakers>
 </document>

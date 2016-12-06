@@ -33,7 +33,7 @@ class Project: SectionObject {
             
             let randomValue = arc4random_uniform(10)
             for _ in 0...randomValue {
-                self.childSections.append(Phase(random: true))
+                self.addChildSectionObject(Phase(random: true))
             }
             self.properties["Details"] = "These are some details about this project"
         }
