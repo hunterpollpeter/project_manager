@@ -9,6 +9,7 @@
 import Foundation
 
 class SectionObject: NSObject {
+    var tableSections = ["Properties"]
     var properties: [String: AnyObject]!
     var childSections: [SectionObject]!
 }

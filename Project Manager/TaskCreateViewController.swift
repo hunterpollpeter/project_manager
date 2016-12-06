@@ -9,6 +9,7 @@
 import UIKit
 
 class TaskCreateViewController: UIViewController, UITextFieldDelegate {
+    
     var sectionObject: SectionObject!
     var startDatePicker: UIDatePicker!
     var deadlineDatePicker: UIDatePicker!
@@ -86,7 +87,7 @@ class TaskCreateViewController: UIViewController, UITextFieldDelegate {
         sectionObject.childSections.append(Task(name: name, details: details, start: start!, deadline: deadline!))
         
         navigationController!.popViewControllerAnimated(true)
-        let phaseViewController = navigationController?.topViewController as! PhaseViewController
+        let phaseViewController = navigationController?.topViewController as! SectionObjectViewController
         phaseViewController.tableView.reloadData()
         
     }

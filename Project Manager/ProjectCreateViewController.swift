@@ -8,28 +8,11 @@
 
 import UIKit
 
-class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
+class ProjectCreateViewController: SectionObjectCreateViewController {
     
     var projectStore: ProjectStore!
-    var startDatePicker: UIDatePicker!
-    var deadlineDatePicker: UIDatePicker!
-    var startTimePicker: UIDatePicker!
-    var deadlineTimePicker: UIDatePicker!
     
-    // MARK: Connections
-    
-    @IBOutlet var startDateTextField: UITextField!
-    @IBOutlet var startTimeTextField: UITextField!
-    @IBOutlet var deadlineDateTextField: UITextField!
-    @IBOutlet var deadlineTimeTextField: UITextField!
-    @IBOutlet var nameTextField: UITextField!
-    @IBOutlet var detailsTextField: UITextField!
-    
-    @IBAction func dismissKeyboard() {
-        view.endEditing(false)
-    }
-    
-    @IBAction func Done() {
+    @IBAction override func Done() {
         let alertController = UIAlertController(title: "Failed to create project", message: nil, preferredStyle: .Alert)
         alertController.addAction(UIAlertAction(title: "Okay", style: .Cancel, handler: { (_) -> Void in
             self.dismissViewControllerAnimated(true, completion: nil)
@@ -78,17 +61,17 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        let project = projectStore.createProject(name, details: details, start: start!, deadline: deadline!)
+        projectStore.createProject(name, details: details, start: start!, deadline: deadline!)
         
         if let parentNavController = self.parentViewController?.navigationController {
             parentNavController.popViewControllerAnimated(true)
             let projectsViewController = parentNavController.topViewController as! ProjectsViewController
             projectsViewController.tableView.reloadData()
-            let index = projectStore.allProjects.indexOf(project)!
-            let indexPath = NSIndexPath(forRow: index, inSection: 0)
-            projectsViewController.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
-            projectsViewController.tableView.cellForRowAtIndexPath(indexPath)?.setSelected(true, animated: true)
-            projectsViewController.performSegueWithIdentifier("ProjectDetail", sender: nil)
+//            let index = projectStore.allProjects.indexOf(project)!
+//            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+//            projectsViewController.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
+//            projectsViewController.tableView.cellForRowAtIndexPath(indexPath)?.setSelected(true, animated: true)
+//            projectsViewController.performSegueWithIdentifier("ProjectDetail", sender: nil)
         }
         else {
             let parent = parentViewController as! UINavigationController
@@ -96,146 +79,12 @@ class ProjectCreateViewController: UIViewController, UITextFieldDelegate {
             let navController = splitViewController.viewControllers[0] as! UINavigationController
             let projectsViewController =  navController.topViewController as! ProjectsViewController
             projectsViewController.tableView.reloadData()
-            let index = projectStore.allProjects.indexOf(project)!
-            let indexPath = NSIndexPath(forRow: index, inSection: 0)
-            projectsViewController.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
-            projectsViewController.tableView.cellForRowAtIndexPath(indexPath)?.setSelected(true, animated: true)
-            projectsViewController.performSegueWithIdentifier("ProjectDetail", sender: nil)
+//            let index = projectStore.allProjects.indexOf(project)!
+//            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+//            projectsViewController.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
+//            projectsViewController.tableView.cellForRowAtIndexPath(indexPath)?.setSelected(true, animated: true)
+//            projectsViewController.performSegueWithIdentifier("ProjectDetail", sender: nil)
         }
     }
     
-    // MARK: TextField Delegates
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        let dateFormatter = NSDateFormatter()
-        let currentString = textField.text!
-        switch textField {
-        case startDateTextField, deadlineDateTextField:
-            dateFormatter.dateFormat = "MMM d, yyyy"
-        case startTimeTextField, deadlineTimeTextField:
-            dateFormatter.dateFormat = "h:m a"
-        default:
-            return true
-        }
-        if let _ = dateFormatter.dateFromString(currentString + string) {
-            return true
-        }
-        else {
-            return false
-        }
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        dismissKeyboard()
-        return true
-    }
-    
-    // MARK: ViewController Lifecycle
-    
-    override func viewDidLoad() {
-        navigationItem.title = "Create Project"
-        
-        nameTextField.delegate = self
-        detailsTextField.delegate = self
-        
-        startDatePicker = UIDatePicker()
-        startDatePicker.datePickerMode = UIDatePickerMode.Date
-        startDatePicker.addTarget(self, action: #selector(datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
-        
-        deadlineDatePicker = UIDatePicker()
-        deadlineDatePicker.datePickerMode = UIDatePickerMode.Date
-        deadlineDatePicker.addTarget(self, action: #selector(datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
-        
-        startTimePicker = UIDatePicker()
-        startTimePicker.datePickerMode = UIDatePickerMode.Time
-        startTimePicker.minuteInterval = 15
-        startTimePicker.addTarget(self, action: #selector(timePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
-        
-        deadlineTimePicker = UIDatePicker()
-        deadlineTimePicker.datePickerMode = UIDatePickerMode.Time
-        deadlineTimePicker.minuteInterval = 15
-        deadlineTimePicker.addTarget(self, action: #selector(timePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
-        
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: nil, action: nil)
-        doneButton.style = .Done
-        doneButton.action = #selector(responderDoneButtonClicked)
-        
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-        
-        let toolBar = UIToolbar()
-        toolBar.barStyle = .Default
-        toolBar.setItems([flexSpace ,doneButton], animated: true)
-        toolBar.sizeToFit()
-        
-        startDateTextField.inputView = startDatePicker
-        startDateTextField.inputAccessoryView = toolBar
-        startDateTextField.delegate = self
-        
-        startTimeTextField.inputView = startTimePicker
-        startTimeTextField.inputAccessoryView = toolBar
-        startTimeTextField.delegate = self
-        
-        deadlineDateTextField.inputView = deadlineDatePicker
-        deadlineDateTextField.inputAccessoryView = toolBar
-        deadlineDateTextField.delegate = self
-        
-        deadlineTimeTextField.inputView = deadlineTimePicker
-        deadlineTimeTextField.inputAccessoryView = toolBar
-        deadlineTimeTextField.delegate = self
-    }
-    
-    // MARK: Functions
-    
-    func datePickerValueChanged(sender: UIDatePicker) {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .MediumStyle
-        dateFormatter.timeStyle = .NoStyle
-        let text = dateFormatter.stringFromDate(sender.date)
-        switch sender {
-        case startDatePicker:
-            startDateTextField.text = text
-        case deadlineDatePicker:
-            deadlineDateTextField.text = text
-        default:
-            return
-        }
-
-    }
-    
-    func timePickerValueChanged(sender: UIDatePicker) {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .NoStyle
-        dateFormatter.timeStyle = .ShortStyle
-        let text = dateFormatter.stringFromDate(sender.date)
-        switch sender {
-        case startTimePicker:
-            startTimeTextField.text = text
-        case deadlineTimePicker:
-            deadlineTimeTextField.text = text
-        default:
-            return
-        }
-    }
-    
-    func responderDoneButtonClicked(sender: AnyObject) {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .MediumStyle
-        dateFormatter.timeStyle = .NoStyle
-        if startDateTextField.isFirstResponder() {
-            startDateTextField.text = dateFormatter.stringFromDate(startDatePicker.date)
-        }
-        if deadlineDateTextField.isFirstResponder() {
-            deadlineDateTextField.text = dateFormatter.stringFromDate(deadlineDatePicker.date)
-        }
-        dateFormatter.dateStyle = .NoStyle
-        dateFormatter.timeStyle = .ShortStyle
-        if startTimeTextField.isFirstResponder() {
-            startTimeTextField.text = dateFormatter.stringFromDate(startTimePicker.date)
-        }
-        if deadlineTimeTextField.isFirstResponder() {
-            deadlineTimeTextField.text = dateFormatter.stringFromDate(deadlineTimePicker.date)
-        }
-
-        dismissKeyboard()
-    }
 }

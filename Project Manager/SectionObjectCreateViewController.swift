@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhaseCreateViewController: UIViewController, UITextFieldDelegate {
+class SectionObjectCreateViewController: UIViewController, UITextFieldDelegate {
     
     var sectionObject: SectionObject!
     var startDatePicker: UIDatePicker!
@@ -30,7 +30,14 @@ class PhaseCreateViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func Done() {
-        let alertController = UIAlertController(title: "Failed to create project", message: nil, preferredStyle: .Alert)
+        
+        
+        let sectionObjectType = sectionObject is Project ? "Phase" : sectionObject is Phase ? "Task" : "Project"
+        let sectionObjectParentType = sectionObject is Project ? "Project" : "Phase"
+        
+        navigationItem.title = "Create \(sectionObjectType)"
+        
+        let alertController = UIAlertController(title: "Failed to create \(sectionObjectType)", message: nil, preferredStyle: .Alert)
         alertController.addAction(UIAlertAction(title: "Okay", style: .Cancel, handler: nil))
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy h:m a"
@@ -42,8 +49,8 @@ class PhaseCreateViewController: UIViewController, UITextFieldDelegate {
         let deadlineTimeString = deadlineTimeTextField.text!
         let start = dateFormatter.dateFromString("\(startDateString) \(startTimeString)")
         let deadline = dateFormatter.dateFromString("\(deadlineDateString) \(deadlineTimeString)")
-        let projectStart = sectionObject.properties["Start"] as! NSDate
-        let projectDeadline = sectionObject.properties["Deadline"] as! NSDate
+        let parentStart = sectionObject.properties["Start"] as! NSDate
+        let parentDeadline = sectionObject.properties["Deadline"] as! NSDate
         
         if name.isEmpty {
             alertController.message = "Name field is empty."
@@ -72,11 +79,11 @@ class PhaseCreateViewController: UIViewController, UITextFieldDelegate {
         else if start!.laterDate(deadline!) == start {
             alertController.message = "Start date must be earlier than deadline."
         }
-        else if start!.earlierDate(projectStart) == start {
-            alertController.message = "Start date cannot be before project start date."
+        else if start!.earlierDate(parentStart) == start {
+            alertController.message = "Start date cannot be before \(sectionObjectParentType) start date."
         }
-        else if deadline!.laterDate(projectDeadline) == deadline {
-            alertController.message = "Deadline cannot be after project deadline."
+        else if deadline!.laterDate(parentDeadline) == deadline {
+            alertController.message = "Deadline cannot be after \(sectionObjectParentType) deadline."
         }
         
         if let _ = alertController.message {
@@ -84,12 +91,20 @@ class PhaseCreateViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        sectionObject.childSections.append(Phase(name: name, details: details, start: start!, deadline: deadline!))
-
-        navigationController!.popViewControllerAnimated(true)
-        let projectViewController = navigationController?.topViewController as! ProjectViewController
-        projectViewController.tableView.reloadData()
+        var childSectionObject: SectionObject!
+        if sectionObject is Project {
+            childSectionObject = Phase(name: name, details: details, start: start!, deadline: deadline!)
+        }
+        else if sectionObject is Phase {
+            childSectionObject = Task(name: name, details: details, start: start!, deadline: deadline!)
+        }
+        else {
+            childSectionObject = Project(name: name, details: details, start: start!, deadline: deadline!)
+        }
         
+        addChildSectionObject(sectionObject, child: childSectionObject)
+
+        returnToParent()
     }
     
     // MARK: TextField Delegates
@@ -121,7 +136,8 @@ class PhaseCreateViewController: UIViewController, UITextFieldDelegate {
     // MARK: ViewController Lifecycle
     
     override func viewDidLoad() {
-        navigationItem.title = "Create Phase"
+        let sectionObjectType = sectionObject is Project ? "Phase" : sectionObject is Phase ? "Task" : "Project"
+        navigationItem.title = "Create \(sectionObjectType)"
         
         nameTextField.delegate = self
         detailsTextField.delegate = self
@@ -226,5 +242,14 @@ class PhaseCreateViewController: UIViewController, UITextFieldDelegate {
         
         dismissKeyboard()
     }
-
+    
+    func returnToParent() {
+        navigationController!.popViewControllerAnimated(true)
+        let projectViewController = navigationController?.topViewController as! SectionObjectViewController
+        projectViewController.tableView.reloadData()
+    }
+    
+    func addChildSectionObject(parent: SectionObject, child: SectionObject) {
+        parent.childSections.append(child)
+    }
 }

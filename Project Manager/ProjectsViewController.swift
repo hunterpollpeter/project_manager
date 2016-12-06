@@ -30,9 +30,9 @@ class ProjectsViewController: UITableViewController {
         switch segue.identifier! {
         case "ProjectDetail":
             let navController = segue.destinationViewController as! UINavigationController
-            let phasesViewController =  navController.topViewController as! ProjectViewController
+            let phasesViewController =  navController.topViewController as! SectionObjectViewController
             let indexPath = tableView.indexPathForSelectedRow!
-            phasesViewController.project = projectStore.allProjects[indexPath.row]
+            phasesViewController.sectionObject = projectStore.allProjects[indexPath.row]
         case "CreateProject":
             let navController = segue.destinationViewController as! UINavigationController
             let projectCreateViewController = navController.topViewController as! ProjectCreateViewController

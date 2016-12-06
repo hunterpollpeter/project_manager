@@ -8,10 +8,8 @@
 
 import UIKit
 
-class ProjectViewController: UITableViewController {
+class SectionObjectViewController: UITableViewController {
     var sectionObject: SectionObject!
-    let sections = ["Properties", "Phases"]
-
     
     override func viewWillAppear(animated: Bool) {
         if let sectionObject = sectionObject {
@@ -24,7 +22,8 @@ class ProjectViewController: UITableViewController {
     @IBOutlet var Add: UIBarButtonItem!
     
     @IBAction func Add(sender: AnyObject) {
-        let alertController = UIAlertController(title: "Create New", message: "Create a new Property or Phase.", preferredStyle: .ActionSheet)
+        let sectionObjectType = sectionObject is Project ? "Phase" : "Task"
+        let alertController = UIAlertController(title: "Create New", message: "Create a new Property or \(sectionObjectType).", preferredStyle: .ActionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         alertController.addAction(cancelAction)
@@ -32,8 +31,8 @@ class ProjectViewController: UITableViewController {
         let propertyAction = UIAlertAction(title: "Property", style: .Default, handler: nil)
         alertController.addAction(propertyAction)
         
-        let phaseAction = UIAlertAction(title: "Phase", style: .Default, handler: { (action) -> Void in self.performSegueWithIdentifier("CreatePhase", sender: nil) })
-        alertController.addAction(phaseAction)
+        let sectionObjectAction = UIAlertAction(title: sectionObjectType, style: .Default, handler: { (action) -> Void in self.performSegueWithIdentifier("Create\(sectionObjectType)", sender: nil) })
+        alertController.addAction(sectionObjectAction)
         
         if let popoverController = alertController.popoverPresentationController {
             popoverController.barButtonItem = Add
@@ -49,12 +48,19 @@ class ProjectViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {
         case "PhaseDetail":
-            let tasksViewController = segue.destinationViewController as! PhaseViewController
+            let phaseViewController = segue.destinationViewController as! SectionObjectViewController
             let cell = sender as! UITableViewCell
-            tasksViewController.sectionObject = sectionObject.childSections[tableView.indexPathForCell(cell)!.row]
+            phaseViewController.sectionObject = sectionObject.childSections[tableView.indexPathForCell(cell)!.row]
+        case "TaskDetail":
+            let taskViewController = segue.destinationViewController as! SectionObjectViewController
+            let cell = sender as! UITableViewCell
+            taskViewController.sectionObject = sectionObject.childSections[tableView.indexPathForCell(cell)!.row]
         case "CreatePhase":
-            let phaseCreateViewController = segue.destinationViewController as! PhaseCreateViewController
+            let phaseCreateViewController = segue.destinationViewController as! SectionObjectCreateViewController
             phaseCreateViewController.sectionObject = sectionObject
+        case "CreateTask":
+            let taskCreateViewController = segue.destinationViewController as! SectionObjectCreateViewController
+            taskCreateViewController.sectionObject = sectionObject
         case "EditString":
             let stringEditViewController = segue.destinationViewController as! StringEditViewController
             stringEditViewController.sectionObject = sectionObject
@@ -67,11 +73,17 @@ class ProjectViewController: UITableViewController {
     // MARK: - TableView DataSource
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return sections.count
+        if let sectionObject = sectionObject {
+            return sectionObject.tableSections.count
+        }
+        return 0
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section]
+        if let sectionObject = sectionObject {
+            return sectionObject.tableSections[section]
+        }
+        return nil
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

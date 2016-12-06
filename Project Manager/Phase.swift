@@ -9,8 +9,7 @@
 import Foundation
 
 class Phase: SectionObject {
-//    var tasks: [Task]!
-    
+
     init(name: String, details: String = "", start: NSDate, deadline: NSDate) {
         super.init()
         self.properties = ["Name": name,
@@ -19,8 +18,9 @@ class Phase: SectionObject {
                            "Deadline": deadline,
                            "Complete": false]
         self.childSections = []
+        self.tableSections.append("Tasks")
     }
-
+    
     convenience init(random: Bool = false) {
         if random {
             let names = ["Cool Phase", "Fun Phase", "Hard Phase", "Easy Phase"]

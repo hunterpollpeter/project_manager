@@ -9,8 +9,6 @@
 import UIKit
 
 class Project: SectionObject {
-//    var phases: [Phase]!
-//    var properties: [String: AnyObject]!
     
     init(name: String, details: String = "", start: NSDate, deadline: NSDate) {
         super.init()
@@ -20,6 +18,7 @@ class Project: SectionObject {
                            "Deadline": deadline,
                            "Complete": false]
         self.childSections = []
+        self.tableSections.append("Phases")
     }
 
     

@@ -17,6 +17,7 @@ class Task: SectionObject {
                            "Start": start,
                            "Deadline": deadline,
                            "Complete": false]
+        self.childSections = []
     }
     
     convenience init(random: Bool = false) {
