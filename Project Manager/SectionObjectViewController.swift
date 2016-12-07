@@ -11,6 +11,12 @@ import UIKit
 class SectionObjectViewController: UITableViewController {
     var sectionObject: SectionObject!
     
+    override func viewDidLoad() {
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(toggleCompleteLongPress))
+        longPressRecognizer.allowableMovement = 0
+        self.view.addGestureRecognizer(longPressRecognizer)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         if let sectionObject = sectionObject {
             let name = sectionObject.properties["Name"] as! String
@@ -30,7 +36,7 @@ class SectionObjectViewController: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         alertController.addAction(cancelAction)
         
-        let propertyAction = UIAlertAction(title: "Property", style: .Default, handler: nil)
+        let propertyAction = UIAlertAction(title: "Property", style: .Default, handler: { (action) -> Void in self.propertyAlertController()})
         alertController.addAction(propertyAction)
         
         let sectionObjectAction = UIAlertAction(title: sectionObjectType, style: .Default, handler: { (action) -> Void in self.performSegueWithIdentifier("Create\(sectionObjectType)", sender: nil) })
@@ -193,5 +199,23 @@ class SectionObjectViewController: UITableViewController {
         default:
             return
         }
+    }
+    
+    func toggleCompleteLongPress(longPressRecognizer: UILongPressGestureRecognizer) {
+        if !(sectionObject is Phase) {
+            return
+        }
+        let touchPoint = longPressRecognizer.locationInView(view)
+        if let indexPath = tableView.indexPathForRowAtPoint(touchPoint) {
+            if let task = sectionObject.childSections[indexPath.row] as? Task {
+                task.toggleComplete()
+                sectionObject.checkComplete()
+                tableView.reloadData()
+            }
+        }
+    }
+    
+    func propertyAlertController() {
+        
     }
 }
