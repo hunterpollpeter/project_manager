@@ -13,7 +13,6 @@ class SectionObjectViewController: UITableViewController {
     
     override func viewDidLoad() {
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(toggleCompleteLongPress))
-        longPressRecognizer.allowableMovement = 0
         self.view.addGestureRecognizer(longPressRecognizer)
     }
     
@@ -46,11 +45,7 @@ class SectionObjectViewController: UITableViewController {
             popoverController.barButtonItem = Add
         }
         
-        if let _ = alertController.message {
-            self.presentViewController(alertController, animated: true, completion: nil)
-            return
-        }
-
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -201,6 +196,25 @@ class SectionObjectViewController: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        switch editingStyle {
+        case .Delete:
+            let sectionObjectType = sectionObject is Project ? "Phase" : "Task"
+            let type = indexPath.section == 0 ? "Property" : sectionObjectType
+            let alertController = UIAlertController(title: "Delete \(type)", message: "Delete CHANGE ME!", preferredStyle: .Alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            
+            let deleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: nil)
+            alertController.addAction(deleteAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        default:
+            return
+        }
+    }
+    
     func toggleCompleteLongPress(longPressRecognizer: UILongPressGestureRecognizer) {
         if !(sectionObject is Phase) {
             return
@@ -216,6 +230,27 @@ class SectionObjectViewController: UITableViewController {
     }
     
     func propertyAlertController() {
+        let alertController = UIAlertController(title: "New Property", message: "Create a new Property.", preferredStyle: .ActionSheet)
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        let textAction = UIAlertAction(title: "Text", style: .Default, handler: nil)
+        alertController.addAction(textAction)
+        
+        let collectionAction = UIAlertAction(title: "Collection", style: .Default, handler: nil)
+        alertController.addAction(collectionAction)
+        
+        let checkAction = UIAlertAction(title: "Check", style: .Default, handler: nil)
+        alertController.addAction(checkAction)
+        
+        let dateAction = UIAlertAction(title: "Date", style: .Default, handler: nil)
+        alertController.addAction(dateAction)
+        
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.barButtonItem = Add
+        }
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }
