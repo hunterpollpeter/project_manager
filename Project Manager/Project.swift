@@ -21,6 +21,16 @@ class Project: SectionObject {
         self.tableSections.append("Phases")
     }
 
+    override func percentComplete() -> Float {
+        var complete = 0
+        var total = 0
+        for child in childSections {
+            complete += child.childSections.filter({$0.properties["Complete"] as! Bool}).count
+            total += child.childSections.count
+        }
+        
+        return Float(complete) / Float(total)
+    }
     
     convenience init(random: Bool = false) {
         if random {
@@ -40,5 +50,6 @@ class Project: SectionObject {
         else {
             self.init(name: "No Name", start: NSDate(), deadline: NSDate())
         }
+
     }
 }

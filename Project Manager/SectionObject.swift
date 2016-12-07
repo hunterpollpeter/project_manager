@@ -17,6 +17,7 @@ class SectionObject: NSObject {
     func addChildSectionObject(child: SectionObject) {
         child.parent = self
         childSections.append(child)
+        checkComplete()
     }
     
     func toggleComplete() {
@@ -30,7 +31,7 @@ class SectionObject: NSObject {
         return Float(complete.count) / Float(childSections.count)
     }
     
-    private func checkComplete() {
+    func checkComplete() {
         properties["Complete"] = percentComplete() == 1
         if let parent = parent {
             parent.checkComplete()

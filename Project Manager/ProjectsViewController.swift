@@ -50,12 +50,20 @@ class ProjectsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell", forIndexPath: indexPath)
-        let project = projectStore.allProjects[indexPath.row]
+        let project = projectStore.allProjects[indexPath.row] 
         let name = project.properties["Name"] as! String
         let details = project.properties["Details"] as! String
         cell.textLabel?.text = name
         cell.detailTextLabel?.text = details
-        
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = .PercentStyle
+        let percentLabel = UILabel()
+        if let text = numberFormatter.stringFromNumber(project.percentComplete()) {
+            percentLabel.text = text == "NaN" ? "None" : text
+        }
+        percentLabel.textColor = UIColor(red: 145/255, green: 145/255, blue: 149/255, alpha: 1)
+        percentLabel.sizeToFit()
+        cell.accessoryView = percentLabel
         return cell
     }
 }

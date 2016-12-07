@@ -15,6 +15,10 @@ class SplitViewController: UISplitViewController, UISplitViewControllerDelegate 
         self.delegate = self
     }
     
+    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool{
+        return true
+    }
+    
     func splitViewController(svc: UISplitViewController, shouldHideViewController vc: UIViewController, inOrientation orientation: UIInterfaceOrientation) -> Bool {
         return false
     }

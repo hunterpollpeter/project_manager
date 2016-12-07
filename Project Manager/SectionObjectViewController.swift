@@ -154,13 +154,18 @@ class SectionObjectViewController: UITableViewController {
                 let numberFormatter = NSNumberFormatter()
                 numberFormatter.numberStyle = .PercentStyle
                 let percentLabel = UILabel()
-                percentLabel.text = numberFormatter.stringFromNumber(childSectionObject.percentComplete())
+                if let text = numberFormatter.stringFromNumber(childSectionObject.percentComplete()) {
+                    percentLabel.text = text == "NaN" ? "None" : text
+                }
+                percentLabel.textColor = UIColor(red: 145/255, green: 145/255, blue: 149/255, alpha: 1)
                 percentLabel.sizeToFit()
                 cell.accessoryView = percentLabel
             }
             else {
                 if childSectionObject.properties["Complete"] as! Bool {
                     cell.accessoryType = .Checkmark
+                } else {
+                    cell.accessoryType = .None
                 }
             }
             return cell
