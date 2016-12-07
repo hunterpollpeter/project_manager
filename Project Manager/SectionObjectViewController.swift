@@ -221,10 +221,14 @@ class SectionObjectViewController: UITableViewController {
         }
         let touchPoint = longPressRecognizer.locationInView(view)
         if let indexPath = tableView.indexPathForRowAtPoint(touchPoint) {
-            if let task = sectionObject.childSections[indexPath.row] as? Task {
-                task.toggleComplete()
-                sectionObject.checkComplete()
-                tableView.reloadData()
+            if indexPath.row < sectionObject.childSections.count {
+                if let task = sectionObject.childSections[indexPath.row] as? Task {
+                    if longPressRecognizer.state == .Began {
+                        task.toggleComplete()
+                        sectionObject.checkComplete()
+                        tableView.reloadData()
+                    }
+                }
             }
         }
     }
