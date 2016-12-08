@@ -184,7 +184,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="Add" destination="xis-xI-fyu" id="9nV-fm-IZD"/>
-                        <segue destination="YAG-Ud-izG" kind="show" identifier="EditStringArray" id="KbR-qz-OBQ"/>
                         <segue destination="8bf-rd-haV" kind="show" identifier="CreateTask" id="xY5-GJ-lpm"/>
                         <segue destination="B2c-sY-Tnv" kind="show" identifier="EditDateTime" id="Eve-1M-MLg"/>
                         <segue destination="fBb-hb-T4S" kind="show" identifier="EditString" id="90p-OL-tuR"/>
@@ -234,7 +233,6 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="YAG-Ud-izG" kind="show" identifier="EditStringArray" id="Uat-6i-9Iv"/>
                         <segue destination="B2c-sY-Tnv" kind="show" identifier="EditDateTime" id="qRA-5C-7Vb"/>
                         <segue destination="fBb-hb-T4S" kind="show" identifier="EditString" id="PkQ-M0-Fvv"/>
                     </connections>
@@ -318,7 +316,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="Add" destination="qkS-bi-NjF" id="VTf-eI-j0X"/>
-                        <segue destination="YAG-Ud-izG" kind="show" identifier="EditStringArray" id="Gel-GT-hf1"/>
                         <segue destination="C76-XU-iir" kind="show" identifier="CreatePhase" id="fol-qC-1Rl"/>
                         <segue destination="B2c-sY-Tnv" kind="show" identifier="EditDateTime" id="2Fk-vE-3hO"/>
                         <segue destination="fBb-hb-T4S" kind="show" identifier="EditString" id="0Nk-De-2ff"/>
@@ -431,21 +428,31 @@
             </objects>
             <point key="canvasLocation" x="3417" y="1641"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="k1s-tX-JGn">
+        <!--Collection Edit View Controller-->
+        <scene sceneID="A6Y-RK-aN1">
             <objects>
-                <viewController id="YAG-Ud-izG" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="rMo-IR-6BF"/>
-                        <viewControllerLayoutGuide type="bottom" id="oC4-Tp-9G8"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="KcY-Sa-njT">
+                <tableViewController id="3me-IG-6PW" customClass="CollectionEditViewController" customModule="Project_Manager" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="tYs-AW-RbC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N7X-6K-fFA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bt3-a8-DKD">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bt3-a8-DKD" id="Vj4-eq-TOC">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3me-IG-6PW" id="4Ae-ae-MXd"/>
+                            <outlet property="delegate" destination="3me-IG-6PW" id="ncE-34-1AZ"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZgU-no-ueP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4129" y="1641"/>
         </scene>
@@ -1006,6 +1013,5 @@
         <segue reference="Eve-1M-MLg"/>
         <segue reference="VLw-JU-QaJ"/>
         <segue reference="90p-OL-tuR"/>
-        <segue reference="KbR-qz-OBQ"/>
     </inferredMetricsTieBreakers>
 </document>
