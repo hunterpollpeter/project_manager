@@ -13,6 +13,7 @@ class SectionObject: NSObject {
     var properties: [String: AnyObject]!
     var childSections: [SectionObject]!
     var parent: SectionObject?
+    var baseProperties = ["Name", "Details", "Start", "Deadline", "Complete"]
     
     func addChildSectionObject(child: SectionObject) {
         child.parent = self
@@ -20,10 +21,23 @@ class SectionObject: NSObject {
         checkComplete()
     }
     
+    func removeObject(object: AnyObject) {
+        switch object {
+        case is SectionObject:
+            let index = childSections.indexOf(object as! SectionObject)
+            childSections.removeAtIndex(index!)
+            checkComplete()
+        default:
+            let key = object as! String
+            properties.removeValueForKey(key)
+        }
+        
+    }
+    
     func toggleComplete() {
         let complete = properties["Complete"] as! Bool
         properties["Complete"] = !complete
-        parent!.checkComplete()
+        checkComplete()
     }
     
     func percentComplete() -> Float {
@@ -32,9 +46,9 @@ class SectionObject: NSObject {
     }
     
     func checkComplete() {
-        properties["Complete"] = percentComplete() == 1
-        if let parent = parent {
-            parent.checkComplete()
+        if !(self is Task) {
+            properties["Complete"] = percentComplete() == 1
         }
+        parent?.checkComplete()
     }
 }

@@ -67,11 +67,11 @@ class SectionObjectViewController: UITableViewController {
         case "EditString":
             let stringEditViewController = segue.destinationViewController as! StringEditViewController
             stringEditViewController.sectionObject = sectionObject
-            stringEditViewController.key = sender as! String
+            stringEditViewController.key = sender as? String
         case "EditDateTime":
             let dateTimeEditViewController = segue.destinationViewController as! DateTimeEditViewController
             dateTimeEditViewController.sectionObject = sectionObject
-            dateTimeEditViewController.key = sender as! String
+            dateTimeEditViewController.key = sender as? String
         default:
             return
         }
@@ -130,8 +130,17 @@ class SectionObjectViewController: UITableViewController {
             case is Bool:
                 let boolValue = value as! Bool
                 cell.selectionStyle = .None
-                detailText = boolValue ? "" : "No"
-                cell.accessoryType =  boolValue ? .Checkmark : .None
+                if sectionObject is Task {
+                    detailText = boolValue ? "" : "No"
+                    cell.accessoryType =  boolValue ? .Checkmark : .None
+                }
+                else {
+                    let numberFormatter = NSNumberFormatter()
+                    numberFormatter.numberStyle = .PercentStyle
+                    if let text = numberFormatter.stringFromNumber(sectionObject.percentComplete()) {
+                        detailText = text == "NaN" ? "None" : text
+                    }
+                }
             case is NSDate:
                 let dateValue = value as! NSDate
                 detailText = dateFormatter.stringFromDate(dateValue)
@@ -201,12 +210,22 @@ class SectionObjectViewController: UITableViewController {
         case .Delete:
             let sectionObjectType = sectionObject is Project ? "Phase" : "Task"
             let type = indexPath.section == 0 ? "Property" : sectionObjectType
-            let alertController = UIAlertController(title: "Delete \(type)", message: "Delete CHANGE ME!", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "Delete \(type)", message: "Are you sure you want to delete this \(type)?", preferredStyle: .Alert)
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             alertController.addAction(cancelAction)
             
-            let deleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: nil)
+            let deleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: {(action) -> Void in
+                if indexPath.section == 0 {
+                    let key = Array(self.sectionObject.properties.keys)[indexPath.row]
+                    self.sectionObject.removeObject(key)
+                }
+                else {
+                    let childSectionObject = self.sectionObject.childSections[indexPath.row]
+                    self.sectionObject.removeObject(childSectionObject)
+                }
+                tableView.reloadData()
+            })
             alertController.addAction(deleteAction)
             
             self.presentViewController(alertController, animated: true, completion: nil)
@@ -239,7 +258,9 @@ class SectionObjectViewController: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         alertController.addAction(cancelAction)
         
-        let textAction = UIAlertAction(title: "Text", style: .Default, handler: nil)
+        let textAction = UIAlertAction(title: "Text", style: .Default, handler: {(action) -> Void in
+            self.performSegueWithIdentifier("EditString", sender: nil)
+        })
         alertController.addAction(textAction)
         
         let collectionAction = UIAlertAction(title: "Collection", style: .Default, handler: nil)
@@ -248,7 +269,9 @@ class SectionObjectViewController: UITableViewController {
         let checkAction = UIAlertAction(title: "Check", style: .Default, handler: nil)
         alertController.addAction(checkAction)
         
-        let dateAction = UIAlertAction(title: "Date", style: .Default, handler: nil)
+        let dateAction = UIAlertAction(title: "Date", style: .Default, handler: {(action) -> Void in
+            self.performSegueWithIdentifier("EditDateTime", sender: nil)
+        })
         alertController.addAction(dateAction)
         
         if let popoverController = alertController.popoverPresentationController {
@@ -256,5 +279,15 @@ class SectionObjectViewController: UITableViewController {
         }
         
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if indexPath.section == 0 {
+            let key = Array(sectionObject.properties.keys)[indexPath.row]
+            if sectionObject.baseProperties.contains(key) {
+                return false
+            }
+        }
+        return true
     }
 }
