@@ -46,6 +46,8 @@ class Project: SectionObject {
                 self.addChildSectionObject(Phase(random: true))
             }
             self.properties["Details"] = "These are some details about this project"
+            let notes = ["This is a really cool note.", "This note is pretty cool too.", "Wow, this note is awesome."]
+            self.properties.updateValue(notes, forKey: "Notes")
         }
         else {
             self.init(name: "No Name", start: NSDate(), deadline: NSDate())

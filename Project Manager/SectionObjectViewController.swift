@@ -72,6 +72,10 @@ class SectionObjectViewController: UITableViewController {
             let dateTimeEditViewController = segue.destinationViewController as! DateTimeEditViewController
             dateTimeEditViewController.sectionObject = sectionObject
             dateTimeEditViewController.key = sender as? String
+        case "EditCollection":
+            let collectionEditViewController = segue.destinationViewController as! CollectionEditViewController
+            collectionEditViewController.sectionObject = sectionObject
+            collectionEditViewController.key = sender as? String
         default:
             return
         }
@@ -200,6 +204,8 @@ class SectionObjectViewController: UITableViewController {
                 sectionObject.toggleComplete()
                 tableView.reloadData()
             }
+        case is [String]:
+            performSegueWithIdentifier("EditCollection", sender: key)
         default:
             return
         }

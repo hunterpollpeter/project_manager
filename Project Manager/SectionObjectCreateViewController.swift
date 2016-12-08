@@ -108,8 +108,8 @@ class SectionObjectCreateViewController: UIViewController, UITextFieldDelegate {
             // Device does NOT support SplitViewController
             if let parentNavController = self.parentViewController?.navigationController {
                 parentNavController.popViewControllerAnimated(true)
-                let projectsViewController = parentNavController.topViewController as! ProjectsViewController
-                projectsViewController.tableView.reloadData()
+//                let projectsViewController = parentNavController.topViewController as! ProjectsViewController
+//                projectsViewController.tableView.reloadData()
             }
             // Device does support SplitViewController
             else {
@@ -117,7 +117,7 @@ class SectionObjectCreateViewController: UIViewController, UITextFieldDelegate {
                 let splitViewController = parent.parentViewController as! SplitViewController
                 let navController = splitViewController.viewControllers[0] as! UINavigationController
                 let projectsViewController =  navController.topViewController as! ProjectsViewController
-                projectsViewController.tableView.reloadData()
+//                projectsViewController.tableView.reloadData()
                 let index = projectStore.allProjects.indexOf(project)!
                 let indexPath = NSIndexPath(forRow: index, inSection: 0)
                 projectsViewController.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
@@ -131,8 +131,8 @@ class SectionObjectCreateViewController: UIViewController, UITextFieldDelegate {
         sectionObject.addChildSectionObject(childSectionObject)
 
         navigationController!.popViewControllerAnimated(true)
-        let projectViewController = navigationController?.topViewController as! SectionObjectViewController
-        projectViewController.tableView.reloadData()
+//        let projectViewController = navigationController?.topViewController as! SectionObjectViewController
+//        projectViewController.tableView.reloadData()
     }
     
     // MARK: TextField Delegates
