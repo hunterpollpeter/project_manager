@@ -517,7 +517,7 @@
             </objects>
             <point key="canvasLocation" x="4129" y="1641"/>
         </scene>
-        <!--Create Collection-->
+        <!--Create Collection View Controller-->
         <scene sceneID="cfM-h1-0I4">
             <objects>
                 <viewController id="6pa-gP-ih6" customClass="CreateCollectionViewController" customModule="Project_Manager" customModuleProvider="target" sceneMemberID="viewController">
@@ -563,7 +563,7 @@
                             <constraint firstItem="1eD-UA-p1L" firstAttribute="leading" secondItem="Onc-SW-ny5" secondAttribute="leadingMargin" id="tMX-0I-Qqe"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Collection" id="3m9-K0-2wF">
+                    <navigationItem key="navigationItem" id="3m9-K0-2wF">
                         <barButtonItem key="rightBarButtonItem" title="Item" style="done" systemItem="done" id="5Wx-E9-cty">
                             <connections>
                                 <action selector="Done:" destination="6pa-gP-ih6" id="H7d-da-AAH"/>

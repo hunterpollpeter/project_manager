@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Project: SectionObject {
+class Project: SectionObject, NSCoding {
     
     init(name: String, details: String = "", start: NSDate, deadline: NSDate) {
         super.init()
@@ -32,26 +32,20 @@ class Project: SectionObject {
         return Float(complete) / Float(total)
     }
     
-    convenience init(random: Bool = false) {
-        if random {
-            let names = ["Cool Project", "Fun Project", "Hard Project", "Easy Project"]
-            
-            let idx = arc4random_uniform(UInt32(names.count))
-            let randomName = names[Int(idx)]
-            
-            self.init(name: randomName, start: NSDate(), deadline: NSDate())
-            
-            let randomValue = arc4random_uniform(10)
-            for _ in 0...randomValue {
-                self.addChildSectionObject(Phase(random: true))
-            }
-            self.properties["Details"] = "These are some details about this project"
-            let notes = ["This is a really cool note.", "This note is pretty cool too.", "Wow, this note is awesome."]
-            self.properties.updateValue(notes, forKey: "Notes")
-        }
-        else {
-            self.init(name: "No Name", start: NSDate(), deadline: NSDate())
-        }
-
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(properties, forKey: "properties")
+        aCoder.encodeObject(tableSections, forKey: "tableSections")
+        aCoder.encodeObject(childSections, forKey: "childSections")
+        aCoder.encodeObject(parent, forKey: "parent")
+        aCoder.encodeObject(baseProperties, forKey: "baseProperties")
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init()
+        tableSections = aDecoder.decodeObjectForKey("tableSections") as! [String]
+        properties = aDecoder.decodeObjectForKey("properties") as! [String: AnyObject]
+        childSections = aDecoder.decodeObjectForKey("childSections") as! [SectionObject]
+        parent = aDecoder.decodeObjectForKey("parent") as? SectionObject
+        baseProperties = aDecoder.decodeObjectForKey("baseProperties") as! [String]
     }
 }

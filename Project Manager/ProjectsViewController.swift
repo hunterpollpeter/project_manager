@@ -66,5 +66,15 @@ class ProjectsViewController: UITableViewController {
         cell.accessoryView = percentLabel
         return cell
     }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        switch editingStyle {
+        case .Delete:
+            projectStore.removeProjectAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        default:
+            return
+        }
+    }
 }
 

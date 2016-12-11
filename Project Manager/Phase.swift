@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Phase: SectionObject {
+class Phase: SectionObject, NSCoding {
 
     init(name: String, details: String = "", start: NSDate, deadline: NSDate) {
         super.init()
@@ -21,23 +21,20 @@ class Phase: SectionObject {
         self.tableSections.append("Tasks")
     }
     
-    convenience init(random: Bool = false) {
-        if random {
-            let names = ["Cool Phase", "Fun Phase", "Hard Phase", "Easy Phase"]
-            
-            let idx = arc4random_uniform(UInt32(names.count))
-            let randomName = names[Int(idx)]
-            
-            self.init(name: randomName, start: NSDate(), deadline: NSDate())
-            
-            let randomValue = arc4random_uniform(10)
-            for _ in 0...randomValue {
-                self.addChildSectionObject(Task(random: true))
-            }
-            self.properties["Details"] = "These are some details about this phase"
-        }
-        else {
-            self.init(name: "No Name", start: NSDate(), deadline: NSDate())
-        }
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(properties, forKey: "properties")
+        aCoder.encodeObject(tableSections, forKey: "tableSections")
+        aCoder.encodeObject(childSections, forKey: "childSections")
+        aCoder.encodeObject(parent, forKey: "parent")
+        aCoder.encodeObject(baseProperties, forKey: "baseProperties")
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init()
+        tableSections = aDecoder.decodeObjectForKey("tableSections") as! [String]
+        properties = aDecoder.decodeObjectForKey("properties") as! [String: AnyObject]
+        childSections = aDecoder.decodeObjectForKey("childSections") as! [SectionObject]
+        parent = aDecoder.decodeObjectForKey("parent") as? SectionObject
+        baseProperties = aDecoder.decodeObjectForKey("baseProperties") as! [String]
     }
 }

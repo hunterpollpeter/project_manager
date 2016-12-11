@@ -11,6 +11,11 @@ import Foundation
 class ProjectStore {
     
     var allProjects = [Project]()
+    let projectArchiveURL: NSURL = {
+        let documentsDirectories = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let documentDirectory = documentsDirectories.first!
+        return documentDirectory.URLByAppendingPathComponent("items.archive")
+    }()
     
     func createProject(name: String, details: String, start: NSDate, deadline: NSDate) -> Project {
         let newProject = Project(name: name, details: details, start: start, deadline: deadline)
@@ -20,17 +25,14 @@ class ProjectStore {
         return newProject
     }
     
-    func createProject() -> Project
-    {
-        let project = Project(random: true)
-        allProjects.append(project)
-        return project
+    init() {
+        if let archivedProjects = NSKeyedUnarchiver.unarchiveObjectWithFile(projectArchiveURL.path!) as? [Project] {
+            allProjects += archivedProjects
+        }
     }
     
-    func removeProject(project: Project) {
-        if let index = allProjects.indexOf(project) {
-            allProjects.removeAtIndex(index)
-        }
+    func removeProjectAtIndex(index: Int) {
+        allProjects.removeAtIndex(index)
     }
     
     func moveProjectAtIndex(fromIndex: Int, toIndex: Int) {
@@ -43,10 +45,8 @@ class ProjectStore {
         allProjects.insert(movedProject, atIndex: toIndex)
     }
     
-    
-    init() {
-        for _ in 0..<5 {
-            createProject()
-        }
+    func saveChanges() -> Bool {
+        print("saved")
+        return NSKeyedArchiver.archiveRootObject(allProjects, toFile: projectArchiveURL.path!)
     }
 }
