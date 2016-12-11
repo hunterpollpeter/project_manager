@@ -49,7 +49,8 @@ class CollectionEditViewController: UITableViewController {
         switch segue.identifier! {
         case "EditLongString":
             let longStringEditViewController = segue.destinationViewController as! LongStringEditViewController
-            longStringEditViewController.collection = sectionObject.properties[key] as! [String]
+            longStringEditViewController.sectionObject = sectionObject
+            longStringEditViewController.key = key
             longStringEditViewController.index = sender as? Int
         default:
             return

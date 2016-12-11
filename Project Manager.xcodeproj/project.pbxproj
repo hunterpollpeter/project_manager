@@ -24,6 +24,8 @@
 		3FD3B0751DF9FDEC004946A4 /* CollectionEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD3B0741DF9FDEC004946A4 /* CollectionEditViewController.swift */; };
 		3FD3B0771DFA03D7004946A4 /* LongStringEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD3B0761DFA03D7004946A4 /* LongStringEditViewController.swift */; };
 		3FE397771DD257D1008AA520 /* SectionObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE397761DD257D1008AA520 /* SectionObjectViewController.swift */; };
+		3FE931701DFCDF9A00E7AD7B /* CheckEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9316F1DFCDF9A00E7AD7B /* CheckEditViewController.swift */; };
+		3FE931721DFCE8A300E7AD7B /* CreateCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE931711DFCE8A300E7AD7B /* CreateCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		3FD3B0741DF9FDEC004946A4 /* CollectionEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionEditViewController.swift; sourceTree = "<group>"; };
 		3FD3B0761DFA03D7004946A4 /* LongStringEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LongStringEditViewController.swift; sourceTree = "<group>"; };
 		3FE397761DD257D1008AA520 /* SectionObjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionObjectViewController.swift; sourceTree = "<group>"; };
+		3FE9316F1DFCDF9A00E7AD7B /* CheckEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckEditViewController.swift; sourceTree = "<group>"; };
+		3FE931711DFCE8A300E7AD7B /* CreateCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 				3F8B30BF1DF740170009EF33 /* DateTimeEditViewController.swift */,
 				3FD3B0741DF9FDEC004946A4 /* CollectionEditViewController.swift */,
 				3FD3B0761DFA03D7004946A4 /* LongStringEditViewController.swift */,
+				3FE9316F1DFCDF9A00E7AD7B /* CheckEditViewController.swift */,
+				3FE931711DFCE8A300E7AD7B /* CreateCollectionViewController.swift */,
 			);
 			path = "Project Manager";
 			sourceTree = "<group>";
@@ -181,9 +187,11 @@
 				3F8B30C01DF740170009EF33 /* DateTimeEditViewController.swift in Sources */,
 				3F49D87D1DD2796A00AFD5F7 /* SplitViewController.swift in Sources */,
 				3FCCD7501DCBA17100978C4A /* Task.swift in Sources */,
+				3FE931701DFCDF9A00E7AD7B /* CheckEditViewController.swift in Sources */,
 				3FCCD74C1DCB9D2D00978C4A /* Project.swift in Sources */,
 				3FD3B0771DFA03D7004946A4 /* LongStringEditViewController.swift in Sources */,
 				3FCCD74E1DCBA0E100978C4A /* Phase.swift in Sources */,
+				3FE931721DFCE8A300E7AD7B /* CreateCollectionViewController.swift in Sources */,
 				3F4C0EEF1DDF9A810098551B /* SectionObjectCreateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

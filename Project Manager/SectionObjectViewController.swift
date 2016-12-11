@@ -64,6 +64,9 @@ class SectionObjectViewController: UITableViewController {
         case "CreateTask":
             let taskCreateViewController = segue.destinationViewController as! SectionObjectCreateViewController
             taskCreateViewController.sectionObject = sectionObject
+        case "CreateCollection":
+            let createCollectionViewController = segue.destinationViewController as! CreateCollectionViewController
+            createCollectionViewController.sectionObject = sectionObject
         case "EditString":
             let stringEditViewController = segue.destinationViewController as! StringEditViewController
             stringEditViewController.sectionObject = sectionObject
@@ -76,6 +79,10 @@ class SectionObjectViewController: UITableViewController {
             let collectionEditViewController = segue.destinationViewController as! CollectionEditViewController
             collectionEditViewController.sectionObject = sectionObject
             collectionEditViewController.key = sender as? String
+        case "EditCheck":
+            let checkEditViewController = segue.destinationViewController as! CheckEditViewController
+            checkEditViewController.sectionObject = sectionObject
+            checkEditViewController.key = sender as? String
         default:
             return
         }
@@ -134,16 +141,22 @@ class SectionObjectViewController: UITableViewController {
             case is Bool:
                 let boolValue = value as! Bool
                 cell.selectionStyle = .None
-                if sectionObject is Task {
-                    detailText = boolValue ? "" : "No"
-                    cell.accessoryType =  boolValue ? .Checkmark : .None
+                if key == "Complete"{
+                    if sectionObject is Task {
+                        detailText = boolValue ? "" : "No"
+                        cell.accessoryType =  boolValue ? .Checkmark : .None
+                    }
+                    else {
+                        let numberFormatter = NSNumberFormatter()
+                        numberFormatter.numberStyle = .PercentStyle
+                        if let text = numberFormatter.stringFromNumber(sectionObject.percentComplete()) {
+                            detailText = text == "NaN" ? "None" : text
+                        }
+                    }
                 }
                 else {
-                    let numberFormatter = NSNumberFormatter()
-                    numberFormatter.numberStyle = .PercentStyle
-                    if let text = numberFormatter.stringFromNumber(sectionObject.percentComplete()) {
-                        detailText = text == "NaN" ? "None" : text
-                    }
+                    detailText = boolValue ? "" : "No"
+                    cell.accessoryType =  boolValue ? .Checkmark : .None
                 }
             case is NSDate:
                 let dateValue = value as! NSDate
@@ -200,9 +213,14 @@ class SectionObjectViewController: UITableViewController {
         case is NSDate:
             performSegueWithIdentifier("EditDateTime", sender: key)
         case is Bool:
-            if sectionObject is Task {
-                sectionObject.toggleComplete()
-                tableView.reloadData()
+            if key == "Complete" {
+                if sectionObject is Task {
+                    sectionObject.toggleComplete()
+                    tableView.reloadData()
+                }
+            }
+            else {
+                performSegueWithIdentifier("EditCheck", sender: key)
             }
         case is [String]:
             performSegueWithIdentifier("EditCollection", sender: key)
@@ -269,10 +287,14 @@ class SectionObjectViewController: UITableViewController {
         })
         alertController.addAction(textAction)
         
-        let collectionAction = UIAlertAction(title: "Collection", style: .Default, handler: nil)
+        let collectionAction = UIAlertAction(title: "Collection", style: .Default, handler: {(action) -> Void in
+            self.performSegueWithIdentifier("CreateCollection", sender: nil)
+        })
         alertController.addAction(collectionAction)
         
-        let checkAction = UIAlertAction(title: "Check", style: .Default, handler: nil)
+        let checkAction = UIAlertAction(title: "Check", style: .Default, handler: {(action) -> Void in
+            self.performSegueWithIdentifier("EditCheck", sender: nil)
+        })
         alertController.addAction(checkAction)
         
         let dateAction = UIAlertAction(title: "Date", style: .Default, handler: {(action) -> Void in

@@ -37,7 +37,7 @@ class StringEditViewController: UIViewController {
             sectionObject.properties.updateValue(propertyValueTextField.text! , forKey: key)
         }
         else {
-            let alertController = UIAlertController(title: "Failed to edit \(key)", message: nil, preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "Failed to create text", message: nil, preferredStyle: .Alert)
             alertController.addAction(UIAlertAction(title: "Okay", style: .Cancel, handler: nil))
             
             let name = nameTextField.text!
